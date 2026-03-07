@@ -946,7 +946,7 @@ if (!isTouch) {
 
   const POINTS = 18;
   const STIFFNESS = 0.18;
-  const RED = '#9e2e22';
+  const RED = '#b12b24';
 
   let points = [];
   for (let i = 0; i < POINTS; i++) {
@@ -976,9 +976,9 @@ if (!isTouch) {
       ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
     }
     const grad = ctx.createLinearGradient(points[0].x, points[0].y, points[POINTS-1].x, points[POINTS-1].y);
-    grad.addColorStop(0,   'rgba(158, 46, 34, 0.95)');
-    grad.addColorStop(0.4, 'rgba(158, 46, 34, 0.6)');
-    grad.addColorStop(1,   'rgba(158, 46, 34, 0)');
+    grad.addColorStop(0,   'rgba(177, 43, 36, 0.95)');
+    grad.addColorStop(0.4, 'rgba(177, 43, 36, 0.6)');
+    grad.addColorStop(1,   'rgba(177, 43, 36, 0)');
     ctx.strokeStyle = grad;
     ctx.lineWidth   = 1.4;
     ctx.lineCap     = 'round';
@@ -1002,9 +1002,9 @@ window.addEventListener('scroll', () => {
 // reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 
-// give each card within a grid its own stagger index
+// stagger delay for service cards
 document.querySelectorAll('.services-grid .service-card').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.15) + 's';
+  el.style.transitionDelay = (i * 0.12) + 's';
 });
 
 const observer = new IntersectionObserver(entries => {
@@ -1014,7 +1014,10 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.15 });
+}, {
+  threshold: 0,
+  rootMargin: '0px 0px -120px 0px'
+});
 reveals.forEach(el => observer.observe(el));
 
 // form submit
