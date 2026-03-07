@@ -56,8 +56,8 @@ body {
 
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .9s ease, transform .9s ease;
+  transform: translateY(36px);
+  transition: opacity 1.6s ease, transform 1.6s ease;
 }
 .reveal.visible {
   opacity: 1;
@@ -1001,14 +1001,20 @@ window.addEventListener('scroll', () => {
 
 // reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
+
+// give each card within a grid its own stagger index
+document.querySelectorAll('.services-grid .service-card').forEach((el, i) => {
+  el.style.transitionDelay = (i * 0.15) + 's';
+});
+
 const observer = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
+  entries.forEach(e => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      e.target.classList.add('visible');
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.15 });
 reveals.forEach(el => observer.observe(el));
 
 // form submit
