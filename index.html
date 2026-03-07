@@ -872,23 +872,23 @@ footer {
       Erzähl mir von deinem Moment — ich melde mich persönlich.
     </p>
 
-    <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+    <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
       <input type="hidden" name="form-name" value="anfrage">
       <p style="display:none;"><input name="bot-field"></p>
       <div class="form-row">
         <div class="form-group">
           <label>Dein Name</label>
-          <input type="text" placeholder="Wie heißt du?" required>
+          <input type="text" name="name" placeholder="Wie heißt du?" required>
         </div>
         <div class="form-group">
           <label>E-Mail</label>
-          <input type="email" placeholder="deine@mail.de" required>
+          <input type="email" name="email" placeholder="deine@mail.de" required>
         </div>
       </div>
 
       <div class="form-group">
         <label>Anlass</label>
-        <select required>
+        <select name="anlass" required>
           <option value="" disabled selected>Worum geht es?</option>
           <option>Trauerrede</option>
           <option>Hochzeitsgelübde / Traurede</option>
@@ -901,7 +901,7 @@ footer {
 
       <div class="form-group">
         <label>Deine Nachricht</label>
-        <textarea placeholder="Erzähl mir von deinem Moment — wann, für wen, was du dir wünschst ..." rows="5" required></textarea>
+        <textarea name="nachricht" placeholder="Erzähl mir von deinem Moment — wann, für wen, was du dir wünschst ..." rows="5" required></textarea>
       </div>
 
       <button type="submit" class="btn-submit">Anfrage senden</button>

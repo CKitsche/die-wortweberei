@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danke – Der rote Faden</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Cormorant+SC:wght@300&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #f5f1ea;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+.inner { max-width: 500px; }
+h1 {
+  font-family: 'Cormorant SC', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 300;
+  letter-spacing: 5px;
+  color: #1c1208;
+  margin-bottom: 24px;
+}
+p {
+  font-size: 20px;
+  font-style: italic;
+  color: #6a5a46;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+.rule {
+  width: 60px;
+  height: 0.5px;
+  background: linear-gradient(90deg, #b12b24, transparent);
+  margin: 0 auto 48px;
+}
+a {
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #b12b24;
+  text-decoration: none;
+  border-bottom: 0.5px solid #b12b24;
+  padding-bottom: 4px;
+}
+</style>
+</head>
+<body>
+  <div class="inner">
+    <h1>Danke</h1>
+    <div class="rule"></div>
+    <p>Deine Nachricht ist angekommen.<br>Ich melde mich persönlich bei dir.</p>
+    <a href="/">Zurück zur Seite</a>
+  </div>
+</body>
+</html>
