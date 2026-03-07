@@ -944,8 +944,8 @@ if (!isTouch) {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  const POINTS = 18;
-  const STIFFNESS = 0.18;
+  const POINTS = 32;
+  const STIFFNESS = 0.1;
   const RED = '#b12b24';
 
   let points = [];
@@ -1007,10 +1007,10 @@ if (!isTouch) {
     }
     const grad = ctx.createLinearGradient(points[0].x, points[0].y, points[POINTS-1].x, points[POINTS-1].y);
     grad.addColorStop(0,   'rgba(177, 43, 36, 0.95)');
-    grad.addColorStop(0.4, 'rgba(177, 43, 36, 0.6)');
+    grad.addColorStop(0.6, 'rgba(177, 43, 36, 0.5)');
     grad.addColorStop(1,   'rgba(177, 43, 36, 0)');
     ctx.strokeStyle = grad;
-    ctx.lineWidth   = 1.4;
+    ctx.lineWidth   = 1.8;
     ctx.lineCap     = 'round';
     ctx.lineJoin    = 'round';
     ctx.stroke();
