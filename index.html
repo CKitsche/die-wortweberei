@@ -570,39 +570,111 @@ footer {
   font-style: italic;
 }
 
+/* ── HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: none;
+  padding: 4px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 0.5px;
+  background: var(--ink);
+  transition: transform .3s, opacity .3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+/* mobile nav overlay */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.nav-overlay.open { display: flex; }
+.nav-overlay a {
+  font-family: 'Cormorant SC', serif;
+  font-size: 32px;
+  letter-spacing: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 300;
+}
+.nav-overlay a:hover { color: var(--red); }
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
+  /* cursor off on touch */
+  * { cursor: auto !important; }
+  #thread-canvas { display: none; }
+
   nav { padding: 20px 24px; }
   nav.scrolled { padding: 14px 24px; }
   .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  .hero { padding: 100px 24px 80px; }
+  .hero-logo { width: min(340px, 90vw); }
+  .hero-tagline { font-size: 17px; }
 
   .about {
     grid-template-columns: 1fr;
-    padding: 80px 24px;
-    gap: 48px;
+    padding: 60px 24px;
+    gap: 32px;
   }
-  .about-visual { display: none; }
+  .about-visual {
+    display: flex;
+    order: -1;
+  }
+  .about-visual img {
+    width: min(260px, 70vw) !important;
+  }
 
-  .form-row { grid-template-columns: 1fr; }
+  .section-title { font-size: clamp(30px, 8vw, 42px); letter-spacing: 3px; }
 
+  .services-section { padding: 60px 24px; }
+  .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  .service-card { padding: 36px 28px; }
+  .service-name { font-size: 22px; }
+  .service-desc { font-size: 17px; }
+
+  .process-section { padding: 60px 24px; }
   .process-steps::before { display: none; }
   .process-step {
-    grid-template-columns: 36px 1fr;
+    grid-template-columns: 44px 1fr;
     gap: 20px;
-    padding: 24px 0;
+    padding: 28px 0;
+    border-bottom: 0.5px solid var(--border);
   }
-  .process-step:nth-child(even) .step-content,
-  .process-step:nth-child(even) .step-num,
-  .process-step:nth-child(even) .step-empty { grid-column: auto; grid-row: auto; }
+  .process-step:last-child { border-bottom: none; }
+  .process-step:nth-child(even) .step-content { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
+  .process-step:nth-child(even) .step-num { grid-column: 1; grid-row: 1; }
+  .process-step:nth-child(even) .step-empty { display: none; }
   .process-step .step-content { text-align: left; padding: 0; }
   .process-step .step-empty { display: none; }
+  .step-content h3 { font-size: 20px; }
+  .step-content p { font-size: 16px; }
 
-  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  .contact-section { padding: 60px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-intro { font-size: 18px; }
 
-  section { padding: 80px 24px; }
-  .services-section { padding: 80px 24px; }
-  .process-section { padding: 80px 24px; }
-  .contact-section { padding: 80px 24px; }
+  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  section { padding: 60px 24px; }
 }
 </style>
 </head>
@@ -610,6 +682,14 @@ footer {
 
 <!-- thread cursor canvas -->
 <canvas id="thread-canvas"></canvas>
+
+<!-- mobile nav overlay -->
+<div class="nav-overlay" id="navOverlay">
+  <a href="#ueber" onclick="closeMenu()">Über mich</a>
+  <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
+  <a href="#prozess" onclick="closeMenu()">Wie es geht</a>
+  <a href="#kontakt" onclick="closeMenu()">Anfrage</a>
+</div>
 
 <!-- ── NAV ── -->
 <nav id="nav">
@@ -620,6 +700,9 @@ footer {
     <li><a href="#prozess">Wie es geht</a></li>
     <li><a href="#kontakt">Anfrage</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- ── HERO ── -->
@@ -833,79 +916,79 @@ footer {
 </footer>
 
 <script>
-// ── ROTER FADEN CURSOR ──
-const canvas = document.getElementById('thread-canvas');
-const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
+// hamburger menu
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const o = document.getElementById('navOverlay');
+  h.classList.toggle('open');
+  o.classList.toggle('open');
 }
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-const POINTS = 18;       // number of trail segments
-const STIFFNESS = 0.18;  // how tightly each point follows
-const RED = '#9e2e22';
-
-// Each point: {x, y} — they chain-follow the mouse
-let points = [];
-for (let i = 0; i < POINTS; i++) {
-  points.push({ x: window.innerWidth/2, y: window.innerHeight/2 });
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
 }
 
-let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+// cursor — only on non-touch devices
+const isTouch = window.matchMedia('(hover: none)').matches;
+if (!isTouch) {
+  const canvas = document.getElementById('thread-canvas');
+  const ctx = canvas.getContext('2d');
 
-document.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
-function drawThread() {
-  // Update positions — each point chases the one ahead
-  points[0].x += (mouse.x - points[0].x) * STIFFNESS;
-  points[0].y += (mouse.y - points[0].y) * STIFFNESS;
-  for (let i = 1; i < POINTS; i++) {
-    points[i].x += (points[i-1].x - points[i].x) * STIFFNESS;
-    points[i].y += (points[i-1].y - points[i].y) * STIFFNESS;
+  const POINTS = 18;
+  const STIFFNESS = 0.18;
+  const RED = '#9e2e22';
+
+  let points = [];
+  for (let i = 0; i < POINTS; i++) {
+    points.push({ x: window.innerWidth/2, y: window.innerHeight/2 });
   }
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
 
-  // Draw smooth curve through all points
-  ctx.beginPath();
-  ctx.moveTo(points[0].x, points[0].y);
+  document.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
 
-  for (let i = 1; i < POINTS - 1; i++) {
-    const mx = (points[i].x + points[i+1].x) / 2;
-    const my = (points[i].y + points[i+1].y) / 2;
-    ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
+  function drawThread() {
+    points[0].x += (mouse.x - points[0].x) * STIFFNESS;
+    points[0].y += (mouse.y - points[0].y) * STIFFNESS;
+    for (let i = 1; i < POINTS; i++) {
+      points[i].x += (points[i-1].x - points[i].x) * STIFFNESS;
+      points[i].y += (points[i-1].y - points[i].y) * STIFFNESS;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < POINTS - 1; i++) {
+      const mx = (points[i].x + points[i+1].x) / 2;
+      const my = (points[i].y + points[i+1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
+    }
+    const grad = ctx.createLinearGradient(points[0].x, points[0].y, points[POINTS-1].x, points[POINTS-1].y);
+    grad.addColorStop(0,   'rgba(158, 46, 34, 0.95)');
+    grad.addColorStop(0.4, 'rgba(158, 46, 34, 0.6)');
+    grad.addColorStop(1,   'rgba(158, 46, 34, 0)');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth   = 1.4;
+    ctx.lineCap     = 'round';
+    ctx.lineJoin    = 'round';
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(points[0].x, points[0].y, 2, 0, Math.PI * 2);
+    ctx.fillStyle = RED;
+    ctx.fill();
+    requestAnimationFrame(drawThread);
   }
-
-  // Gradient along the thread: full opacity at tip, fades out at tail
-  const grad = ctx.createLinearGradient(
-    points[0].x, points[0].y,
-    points[POINTS-1].x, points[POINTS-1].y
-  );
-  grad.addColorStop(0,   'rgba(158, 46, 34, 0.95)');
-  grad.addColorStop(0.4, 'rgba(158, 46, 34, 0.6)');
-  grad.addColorStop(1,   'rgba(158, 46, 34, 0)');
-
-  ctx.strokeStyle = grad;
-  ctx.lineWidth   = 1.4;
-  ctx.lineCap     = 'round';
-  ctx.lineJoin    = 'round';
-  ctx.stroke();
-
-  // Small dot at the tip
-  ctx.beginPath();
-  ctx.arc(points[0].x, points[0].y, 2, 0, Math.PI * 2);
-  ctx.fillStyle = RED;
-  ctx.fill();
-
-  requestAnimationFrame(drawThread);
+  drawThread();
 }
-drawThread();
 
 // nav scroll
 const nav = document.getElementById('nav');
