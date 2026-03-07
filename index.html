@@ -949,15 +949,37 @@ if (!isTouch) {
   const RED = '#b12b24';
 
   let points = [];
-  for (let i = 0; i < POINTS; i++) {
-    points.push({ x: window.innerWidth/2, y: window.innerHeight/2 });
+  // Start invisible, appear on first mouse move
+  canvas.style.opacity = '0';
+  let hasMoved = false;
+
+  function getLogoThreadPos() {
+    const logo = document.querySelector('.hero-logo');
+    if (!logo) return { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const rect = logo.getBoundingClientRect();
+    // red thread tip is roughly at 72% from left, 32% from top of the logo image
+    return {
+      x: rect.left + rect.width * 0.72,
+      y: rect.top  + rect.height * 0.32
+    };
   }
 
-  let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+  const startPos = getLogoThreadPos();
+  let mouse = { x: startPos.x, y: startPos.y };
+
+  for (let i = 0; i < points.length; i++) {
+    points[i].x = startPos.x;
+    points[i].y = startPos.y;
+  }
 
   document.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    if (!hasMoved) {
+      hasMoved = true;
+      canvas.style.transition = 'opacity 0.6s ease';
+      canvas.style.opacity = '1';
+    }
   });
 
   function drawThread() {
