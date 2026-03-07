@@ -1011,14 +1011,21 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      observer.unobserve(e.target);
+    } else {
+      e.target.classList.remove('visible');
     }
   });
 }, {
   threshold: 0,
-  rootMargin: '0px 0px -120px 0px'
+  rootMargin: '-80px 0px -80px 0px'
 });
-reveals.forEach(el => observer.observe(el));
+reveals.forEach(el => {
+  if (el.closest('.hero')) {
+    el.classList.add('visible');
+  } else {
+    observer.observe(el);
+  }
+});
 
 // form submit
 function handleSubmit(e) {
