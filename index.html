@@ -90,7 +90,7 @@ nav.scrolled {
   text-decoration: none;
   font-weight: 300;
 }
-.nav-logo span { color: var(--red); }
+.nav-logo span { color: #b12b24; }
 .nav-links {
   display: flex;
   gap: 40px;
@@ -134,7 +134,7 @@ nav.scrolled {
   color: var(--mid);
   letter-spacing: 1.5px;
   max-width: 480px;
-  margin: 0 auto 48px;
+  margin: 0 auto 80px;
   animation: fadeUp .9s ease 1.2s both;
   line-height: 1.7;
 }
@@ -651,22 +651,25 @@ footer {
   .service-name { font-size: 22px; }
   .service-desc { font-size: 17px; }
 
-  .process-section { padding: 60px 24px; }
+  .process-section { padding: 60px 24px; text-align: left; }
   .process-steps::before { display: none; }
   .process-step {
-    grid-template-columns: 44px 1fr;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 20px;
     padding: 28px 0;
     border-bottom: 0.5px solid var(--border);
   }
   .process-step:last-child { border-bottom: none; }
-  .process-step:nth-child(even) .step-content { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
-  .process-step:nth-child(even) .step-num { grid-column: 1; grid-row: 1; }
+  .process-step:nth-child(even) .step-content { grid-column: unset; grid-row: unset; text-align: left; padding: 0; order: 2; }
+  .process-step:nth-child(even) .step-num { grid-column: unset; grid-row: unset; order: 1; }
   .process-step:nth-child(even) .step-empty { display: none; }
-  .process-step .step-content { text-align: left; padding: 0; }
+  .process-step .step-content { text-align: left; padding: 0; order: 2; flex: 1; }
+  .process-step .step-num { order: 1; flex-shrink: 0; margin: 0; }
   .process-step .step-empty { display: none; }
-  .step-content h3 { font-size: 20px; }
-  .step-content p { font-size: 16px; }
+  .step-content h3 { font-size: 22px; }
+  .step-content p { font-size: 16px; line-height: 1.7; }
 
   .contact-section { padding: 60px 24px; }
   .form-row { grid-template-columns: 1fr; }
@@ -693,7 +696,7 @@ footer {
 
 <!-- ── NAV ── -->
 <nav id="nav">
-  <a href="#" class="nav-logo">Der rote Faden <span>·</span> die Wortweberei</a>
+  <a href="#" class="nav-logo">Der rote Faden · <span>die Wortweberei</span></a>
   <ul class="nav-links">
     <li><a href="#ueber">Über mich</a></li>
     <li><a href="#leistungen">Leistungen</a></li>
