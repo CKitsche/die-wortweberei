@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Der rote Faden – die Wortweberei by Carolina. Trauerreden, Hochzeitsgelübde, Business-Poetik, Geburtstagsreden und Taufreden. Worte die bleiben.">
+<title>Der rote Faden – die Wortweberei by Carolina</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap');
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:    #f5f1ea;
+  --ivory:    #fdfcf8;
+  --ink:      #1c1208;
+  --mid:      #6a5a46;
+  --light:    #a89880;
+  --red:      #9e2e22;
+  --red-soft: #b8392a;
+  --border:   #ddd0be;
+  --rule:     #c8b49a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  line-height: 1.7;
+  cursor: default;
+}
+
+/* ── CUSTOM CURSOR ── */
+* { cursor: none; }
+#thread-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── FADE-IN ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background .4s, padding .4s;
+}
+nav.scrolled {
+  background: rgba(245,241,234,0.96);
+  padding: 16px 60px;
+  border-bottom: 0.5px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: 'Cormorant SC', serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 300;
+}
+.nav-logo span { color: var(--red); }
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color .2s;
+  font-weight: 300;
+}
+.nav-links a:hover { color: var(--red); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-logo {
+  width: min(580px, 88vw);
+  margin-bottom: 8px;
+  animation: fadeIn 1.4s ease .2s both;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(14px, 1.6vw, 18px);
+  color: var(--mid);
+  letter-spacing: 1.5px;
+  max-width: 480px;
+  margin: 0 auto 48px;
+  animation: fadeUp .9s ease 1.2s both;
+  line-height: 1.7;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 1s ease 2.2s both;
+}
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--light);
+  font-weight: 300;
+}
+.scroll-line {
+  width: 0.5px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--rule), transparent);
+  animation: scrollPulse 2s ease-in-out 2.5s infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: .4; transform: scaleY(1); }
+  50%      { opacity: 1;  transform: scaleY(1.1); }
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: 120px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--light);
+  display: block;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+
+.section-title {
+  font-family: 'Cormorant SC', serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--ink);
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.thin-rule {
+  width: 80px;
+  height: 0.5px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  margin-bottom: 40px;
+}
+
+/* ── ÜBER CAROLINA ── */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 120px 60px;
+}
+
+.about-text p {
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--mid);
+  line-height: 1.9;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.about-quote {
+  border-left: 0.5px solid var(--red);
+  padding-left: 28px;
+  margin: 40px 0;
+}
+
+.about-quote blockquote {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.about-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-ornament {
+  width: 280px;
+  height: 280px;
+  border: 0.5px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-ornament::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 0.5px solid var(--border);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.about-ornament svg {
+  width: 120px;
+  opacity: .7;
+}
+
+/* ── LEISTUNGEN ── */
+.services-section {
+  background: var(--ivory);
+  padding: 120px 40px;
+}
+
+.services-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.services-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2px;
+}
+
+.service-card {
+  background: var(--cream);
+  padding: 52px 44px;
+  position: relative;
+  transition: background .3s;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 44px; right: 44px;
+  height: 0.5px;
+  background: var(--border);
+}
+
+.service-card:hover { background: var(--ivory); }
+
+.service-number {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: block;
+  font-weight: 300;
+  opacity: .7;
+}
+
+.service-name {
+  font-family: 'Cormorant SC', serif;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.service-desc {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.85;
+  font-style: italic;
+}
+
+.service-line {
+  width: 32px;
+  height: 0.5px;
+  background: var(--red);
+  margin-bottom: 20px;
+  opacity: .6;
+}
+
+/* ── PROZESS ── */
+.process-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 120px 60px;
+  text-align: center;
+}
+
+.process-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 64px;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 0.5px;
+  background: linear-gradient(180deg, transparent, var(--border) 10%, var(--border) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.process-step {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  align-items: center;
+  padding: 48px 0;
+}
+
+.process-step:nth-child(even) .step-content {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+}
+
+.process-step:nth-child(even) .step-num {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.process-step:nth-child(even) .step-empty {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.step-content {
+  text-align: right;
+  padding: 0 40px;
+}
+
+.step-content h3 {
+  font-family: 'Cormorant SC', serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  font-weight: 300;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.step-content p {
+  font-size: 14px;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.step-num {
+  width: 36px;
+  height: 36px;
+  border: 0.5px solid var(--red);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--red);
+  letter-spacing: 1px;
+  background: var(--cream);
+  margin: 0 auto;
+  font-weight: 300;
+  z-index: 1;
+  position: relative;
+}
+
+/* ── KONTAKT ── */
+.contact-section {
+  background: var(--ink);
+  padding: 120px 40px;
+}
+
+.contact-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-inner .section-label { color: #5a4a38; }
+
+.contact-inner .section-title { color: #ede4d2; }
+
+.contact-intro {
+  font-size: 17px;
+  font-style: italic;
+  color: #8a7a66;
+  margin-bottom: 60px;
+  line-height: 1.8;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #5a4a38;
+  font-weight: 300;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid #3a2e20;
+  padding: 12px 0;
+  color: #ede4d2;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic;
+  outline: none;
+  transition: border-color .2s;
+  width: 100%;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #4a3a28; }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-bottom-color: var(--red-soft); }
+
+.form-group select {
+  appearance: none;
+  background: transparent;
+  color: #4a3a28;
+  cursor: none;
+}
+
+.form-group select option { background: var(--ink); color: #ede4d2; }
+
+.form-group textarea { resize: none; min-height: 100px; }
+
+.btn-submit {
+  align-self: center;
+  margin-top: 16px;
+  padding: 16px 56px;
+  background: transparent;
+  border: 0.5px solid var(--red-soft);
+  color: var(--red-soft);
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  font-weight: 300;
+  cursor: none;
+  transition: background .3s, color .3s;
+}
+
+.btn-submit:hover {
+  background: var(--red);
+  color: var(--ivory);
+  border-color: var(--red);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 0.5px solid #2a1e12;
+  padding: 48px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-name {
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #5a4a38;
+  font-weight: 300;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: #3a2e20;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+.footer-red {
+  font-size: 11px;
+  color: var(--red);
+  opacity: .6;
+  letter-spacing: 2px;
+  font-style: italic;
+}
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+
+  .about {
+    grid-template-columns: 1fr;
+    padding: 80px 24px;
+    gap: 48px;
+  }
+  .about-visual { display: none; }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  .process-steps::before { display: none; }
+  .process-step {
+    grid-template-columns: 36px 1fr;
+    gap: 20px;
+    padding: 24px 0;
+  }
+  .process-step:nth-child(even) .step-content,
+  .process-step:nth-child(even) .step-num,
+  .process-step:nth-child(even) .step-empty { grid-column: auto; grid-row: auto; }
+  .process-step .step-content { text-align: left; padding: 0; }
+  .process-step .step-empty { display: none; }
+
+  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+
+  section { padding: 80px 24px; }
+  .services-section { padding: 80px 24px; }
+  .process-section { padding: 80px 24px; }
+  .contact-section { padding: 80px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- thread cursor canvas -->
+<canvas id="thread-canvas"></canvas>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Der rote Faden <span>·</span> die Wortweberei</a>
+  <ul class="nav-links">
+    <li><a href="#ueber">Über mich</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#prozess">Wie es geht</a></li>
+    <li><a href="#kontakt">Anfrage</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <img src="Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei by Carolina" class="hero-logo">
+  <p class="hero-tagline">
+    Worte, die tragen. Sätze, die bleiben.<br>
+    Texte, die genau das sagen, was du fühlst.
+  </p>
+  <div class="hero-scroll">
+    <span>Entdecken</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── ÜBER CAROLINA ── -->
+<div class="about" id="ueber">
+  <div class="about-text reveal">
+    <span class="section-label">Über mich</span>
+    <h2 class="section-title">Carolina</h2>
+    <div class="thin-rule"></div>
+    <p>
+      Ich glaube, dass jeder Moment im Leben einen Faden hat —
+      einen roten Faden, der alles verbindet. Meine Aufgabe ist es,
+      diesen Faden zu finden und in Worte zu weben.
+    </p>
+    <p>
+      Ob Abschied oder Anfang, ob Lachen oder Trauer —
+      ich schreibe Texte, die genau zu diesem einen Menschen passen.
+      Nicht aus einer Schublade. Sondern aus echtem Zuhören.
+    </p>
+    <div class="about-quote">
+      <blockquote>
+        „Ein guter Text ist wie ein roter Faden —<br>
+        er führt, ohne dass man ihn sieht."
+      </blockquote>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-ornament">
+      <svg viewBox="0 0 400 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80"  y1="20" x2="80"  y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="116" y1="20" x2="116" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="152" y1="20" x2="152" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="188" y1="20" x2="188" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="224" y1="20" x2="224" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="260" y1="20" x2="260" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="296" y1="20" x2="296" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <line x1="332" y1="20" x2="332" y2="220" stroke="#c8b8a0" stroke-width="1"/>
+        <path d="M72,55 Q152,48 224,55 Q296,62 342,55" stroke="#c8b8a0" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <path d="M72,105 Q152,112 224,105 Q296,98 342,105" stroke="#c8b8a0" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <path d="M72,155 Q152,148 224,155 Q296,162 342,155" stroke="#c8b8a0" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <path d="M72,205 Q152,212 224,205 Q296,198 342,205" stroke="#c8b8a0" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+        <path d="M55,140 C75,115 110,85 150,78 C190,71 230,102 270,94 C305,87 338,74 355,82"
+          stroke="#9e2e22" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M55,140 C50,145 46,142 43,148" stroke="#9e2e22" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
+        <path d="M355,82 C360,78 364,80 368,76" stroke="#9e2e22" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEISTUNGEN ── -->
+<div class="services-section" id="leistungen">
+  <div class="services-inner">
+    <div class="services-header reveal">
+      <span class="section-label">Was ich schreibe</span>
+      <h2 class="section-title">Leistungen</h2>
+      <div class="thin-rule" style="margin: 0 auto 0;"></div>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-number">01</span>
+        <div class="service-line"></div>
+        <div class="service-name">Trauerrede</div>
+        <p class="service-desc">
+          Ein Abschied verdient mehr als allgemeine Worte.
+          Ich höre zu, frage nach, und schreibe eine Rede,
+          die diesen einen Menschen wirklich zeigt —
+          mit all seiner Geschichte, seiner Eigenart, seinem Licht.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-number">02</span>
+        <div class="service-line"></div>
+        <div class="service-name">Hochzeitsgelübde & Traurede</div>
+        <p class="service-desc">
+          Das Versprechen eines Lebens verdient die richtigen Worte.
+          Ich helfe euch, das zu sagen, was ihr fühlt —
+          persönlich, ehrlich und unvergesslich.
+          Für den Moment, an den ihr euch immer erinnern werdet.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-number">03</span>
+        <div class="service-line"></div>
+        <div class="service-name">Business-Poetik</div>
+        <p class="service-desc">
+          Sprache, die Werte sichtbar macht.
+          Für Events, Jahresfeiern, Jubiläen oder Keynotes —
+          ich schaffe poetische Texte, die Ihre Unternehmenskultur
+          in erinnerbare Worte fasst.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-number">04</span>
+        <div class="service-line"></div>
+        <div class="service-name">Geburtstagsrede</div>
+        <p class="service-desc">
+          Ein runder Geburtstag ist ein Moment der Würdigung.
+          Eine Rede, die den Menschen feiert —
+          mit Wärme, Humor und dem Blick
+          auf das, was wirklich zählt.
+        </p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-number">05</span>
+        <div class="service-line"></div>
+        <div class="service-name">Taufe & Konfirmation</div>
+        <p class="service-desc">
+          Der Beginn eines Weges verdient Worte, die begleiten.
+          Ich schreibe Ansprachen und Texte für Taufen
+          und Konfirmationen — feierlich, persönlich
+          und nah am Herzen.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── PROZESS ── -->
+<div class="process-section" id="prozess">
+  <span class="section-label reveal">So arbeite ich</span>
+  <h2 class="section-title reveal">Wie es geht</h2>
+  <div class="thin-rule reveal" style="margin: 0 auto 0;"></div>
+
+  <div class="process-steps">
+
+    <div class="process-step reveal">
+      <div class="step-content">
+        <h3>Gespräch</h3>
+        <p>Wir sprechen — über den Moment, den Menschen,<br>das Gefühl, das du vermitteln möchtest.</p>
+      </div>
+      <div class="step-num">01</div>
+      <div class="step-empty"></div>
+    </div>
+
+    <div class="process-step reveal">
+      <div class="step-empty"></div>
+      <div class="step-num">02</div>
+      <div class="step-content" style="text-align:left; padding: 0 40px;">
+        <h3>Schreiben</h3>
+        <p>Ich webe deinen Text — sorgfältig, persönlich,<br>mit Raum für das Unausgesprochene.</p>
+      </div>
+    </div>
+
+    <div class="process-step reveal">
+      <div class="step-content">
+        <h3>Feinschliff</h3>
+        <p>Gemeinsam stimmen wir ab, bis jeder Satz<br>genau das trägt, was er tragen soll.</p>
+      </div>
+      <div class="step-num">03</div>
+      <div class="step-empty"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── KONTAKT ── -->
+<div class="contact-section" id="kontakt">
+  <div class="contact-inner">
+    <span class="section-label reveal">Schreib mir</span>
+    <h2 class="section-title reveal">Deine Anfrage</h2>
+    <p class="contact-intro reveal">
+      Jeder Text beginnt mit einem Gespräch.<br>
+      Erzähl mir von deinem Moment — ich melde mich persönlich.
+    </p>
+
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Dein Name</label>
+          <input type="text" placeholder="Wie heißt du?" required>
+        </div>
+        <div class="form-group">
+          <label>E-Mail</label>
+          <input type="email" placeholder="deine@mail.de" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Anlass</label>
+        <select required>
+          <option value="" disabled selected>Worum geht es?</option>
+          <option>Trauerrede</option>
+          <option>Hochzeitsgelübde / Traurede</option>
+          <option>Business-Poetik</option>
+          <option>Geburtstagsrede</option>
+          <option>Taufe / Konfirmation</option>
+          <option>Anderes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Deine Nachricht</label>
+        <textarea placeholder="Erzähl mir von deinem Moment — wann, für wen, was du dir wünschst ..." rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Anfrage senden</button>
+    </form>
+
+    <div id="form-success" style="display:none; margin-top:40px; color:#8a7a66; font-style:italic; font-size:18px; line-height:1.8;">
+      Danke für deine Nachricht.<br>Ich melde mich bald persönlich bei dir.
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-name">Der rote Faden · die Wortweberei</span>
+  <span class="footer-red">by Carolina</span>
+  <span class="footer-copy">© 2026</span>
+</footer>
+
+<script>
+// ── ROTER FADEN CURSOR ──
+const canvas = document.getElementById('thread-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width  = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+const POINTS = 18;       // number of trail segments
+const STIFFNESS = 0.18;  // how tightly each point follows
+const RED = '#9e2e22';
+
+// Each point: {x, y} — they chain-follow the mouse
+let points = [];
+for (let i = 0; i < POINTS; i++) {
+  points.push({ x: window.innerWidth/2, y: window.innerHeight/2 });
+}
+
+let mouse = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
+document.addEventListener('mousemove', e => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+function drawThread() {
+  // Update positions — each point chases the one ahead
+  points[0].x += (mouse.x - points[0].x) * STIFFNESS;
+  points[0].y += (mouse.y - points[0].y) * STIFFNESS;
+  for (let i = 1; i < POINTS; i++) {
+    points[i].x += (points[i-1].x - points[i].x) * STIFFNESS;
+    points[i].y += (points[i-1].y - points[i].y) * STIFFNESS;
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw smooth curve through all points
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+
+  for (let i = 1; i < POINTS - 1; i++) {
+    const mx = (points[i].x + points[i+1].x) / 2;
+    const my = (points[i].y + points[i+1].y) / 2;
+    ctx.quadraticCurveTo(points[i].x, points[i].y, mx, my);
+  }
+
+  // Gradient along the thread: full opacity at tip, fades out at tail
+  const grad = ctx.createLinearGradient(
+    points[0].x, points[0].y,
+    points[POINTS-1].x, points[POINTS-1].y
+  );
+  grad.addColorStop(0,   'rgba(158, 46, 34, 0.95)');
+  grad.addColorStop(0.4, 'rgba(158, 46, 34, 0.6)');
+  grad.addColorStop(1,   'rgba(158, 46, 34, 0)');
+
+  ctx.strokeStyle = grad;
+  ctx.lineWidth   = 1.4;
+  ctx.lineCap     = 'round';
+  ctx.lineJoin    = 'round';
+  ctx.stroke();
+
+  // Small dot at the tip
+  ctx.beginPath();
+  ctx.arc(points[0].x, points[0].y, 2, 0, Math.PI * 2);
+  ctx.fillStyle = RED;
+  ctx.fill();
+
+  requestAnimationFrame(drawThread);
+}
+drawThread();
+
+// nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
