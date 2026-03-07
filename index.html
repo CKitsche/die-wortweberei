@@ -872,7 +872,9 @@ footer {
       Erzähl mir von deinem Moment — ich melde mich persönlich.
     </p>
 
-    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+    <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="form-name" value="anfrage">
+      <p style="display:none;"><input name="bot-field"></p>
       <div class="form-row">
         <div class="form-group">
           <label>Dein Name</label>
