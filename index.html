@@ -282,28 +282,59 @@ section {
   margin-bottom: 80px;
 }
 
+.services-hint {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--light);
+  font-style: italic;
+  margin-top: 16px;
+  display: block;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2px;
 }
 
+/* ── FLIP CARD ── */
 .service-card {
-  background: var(--cream);
-  padding: 52px 44px;
+  perspective: 1000px;
+  height: 320px;
+  cursor: none;
+}
+
+.service-card-inner {
   position: relative;
-  transition: background .3s;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.service-card::after {
-  content: '';
+.service-card.flipped .service-card-inner {
+  transform: rotateY(180deg);
+}
+
+.service-card-front,
+.service-card-back {
   position: absolute;
-  bottom: 0; left: 44px; right: 44px;
-  height: 0.5px;
-  background: var(--border);
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  padding: 44px 40px;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.service-card:hover { background: var(--ivory); }
+.service-card-back {
+  transform: rotateY(180deg);
+  background: #c9987f;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .service-number {
   font-size: 10px;
@@ -317,7 +348,7 @@ section {
 
 .service-name {
   font-family: 'Cormorant SC', serif;
-  font-size: 27px;
+  font-size: 25px;
   font-weight: 300;
   letter-spacing: 3px;
   color: var(--ink);
@@ -325,7 +356,7 @@ section {
 }
 
 .service-desc {
-  font-size: 20px;
+  font-size: 17px;
   color: var(--mid);
   line-height: 1.85;
   font-style: italic;
@@ -338,6 +369,54 @@ section {
   margin-bottom: 20px;
   opacity: .6;
 }
+
+/* Back side */
+.service-back-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #7a4a30;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.service-price {
+  font-family: 'Cormorant SC', serif;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 300;
+  color: #1c1208;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.service-price-note {
+  font-size: 14px;
+  color: #7a4a30;
+  font-style: italic;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.service-back-line {
+  width: 32px;
+  height: 0.5px;
+  background: #7a4a30;
+  margin-bottom: 24px;
+  opacity: .6;
+}
+
+.service-back-cta {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4a1e10;
+  text-decoration: none;
+  font-weight: 300;
+  transition: opacity .2s;
+  display: inline-block;
+}
+.service-back-cta:hover { opacity: .7; }
 
 /* ── PROZESS ── */
 .process-section {
@@ -370,7 +449,7 @@ section {
   grid-template-columns: 1fr 60px 1fr;
   gap: 0;
   align-items: center;
-  padding: 48px 0;
+  padding: 40px 0;
 }
 
 .process-step:nth-child(even) .step-content {
@@ -396,15 +475,15 @@ section {
 
 .step-content h3 {
   font-family: 'Cormorant SC', serif;
-  font-size: 23px;
+  font-size: 22px;
   letter-spacing: 3px;
   font-weight: 300;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .step-content p {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--mid);
   font-style: italic;
   line-height: 1.8;
@@ -428,7 +507,224 @@ section {
   position: relative;
 }
 
-/* ── KONTAKT ── */
+/* ── CAL.COM ── */
+.cal-section {
+  background: var(--ivory);
+  padding: 100px 40px;
+  text-align: center;
+  border-top: 0.5px solid var(--border);
+}
+
+.cal-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cal-intro {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--mid);
+  margin-bottom: 48px;
+  line-height: 1.8;
+}
+
+.cal-placeholder {
+  border: 0.5px solid var(--border);
+  padding: 64px 40px;
+}
+
+.cal-placeholder p {
+  font-size: 15px;
+  color: var(--light);
+  font-style: italic;
+  letter-spacing: 1px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.cal-placeholder a {
+  display: inline-block;
+  padding: 14px 44px;
+  border: 0.5px solid var(--mid);
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-family: 'Cormorant SC', serif;
+  transition: background .3s, color .3s;
+}
+
+.cal-placeholder a:hover {
+  background: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
+}
+
+/* ── CAL ACCORDION ── */
+.cal-accordion {
+  border-top: 0.5px solid #a06848;
+  border-bottom: 0.5px solid #a06848;
+  padding: 4px 0;
+}
+
+.cal-accordion-toggle {
+  background: none;
+  border: none;
+  cursor: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  gap: 16px;
+  text-align: left;
+}
+
+.cal-accordion-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-style: italic;
+  color: #4a2e1e;
+  font-weight: 300;
+  flex: 1;
+}
+
+.cal-accordion-icon {
+  width: 22px;
+  height: 22px;
+  border: 0.5px solid #7a4a30;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7a4a30;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform .4s ease;
+  line-height: 1;
+}
+
+.cal-accordion-toggle.open .cal-accordion-icon {
+  transform: rotate(45deg);
+}
+
+.cal-accordion-content {
+  display: none;
+  padding-bottom: 24px;
+}
+
+.cal-accordion-content.open { display: block; }
+
+.cal-accordion-hint {
+  font-size: 16px;
+  font-style: italic;
+  color: #4a2e1e;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.cal-embed-placeholder {
+  border: 0.5px solid #a06848;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.cal-embed-placeholder p {
+  font-size: 15px;
+  color: #7a4a30;
+  font-style: italic;
+  line-height: 1.8;
+  letter-spacing: 1px;
+}
+
+/* ── IMPRESSUM ── */
+.impressum-section {
+  background: var(--ink);
+  padding: 64px 40px;
+  border-top: 0.5px solid #2a1e12;
+}
+
+.impressum-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.impressum-toggle {
+  background: none;
+  border: none;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+}
+
+.impressum-toggle-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #8a7a68;
+  font-weight: 300;
+  flex: 1;
+}
+
+.impressum-toggle-icon {
+  width: 20px;
+  height: 20px;
+  border: 0.5px solid #5a4a38;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a7a68;
+  font-size: 14px;
+  transition: transform .3s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.impressum-toggle.open .impressum-toggle-icon {
+  transform: rotate(45deg);
+}
+
+.impressum-content {
+  display: none;
+  margin-top: 40px;
+  border-top: 0.5px solid #2a1e12;
+  padding-top: 40px;
+}
+
+.impressum-content.open { display: block; }
+
+.impressum-content h3 {
+  font-family: 'Cormorant SC', serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #8a7a68;
+  margin-bottom: 10px;
+  font-weight: 300;
+  margin-top: 24px;
+}
+
+.impressum-content h3:first-child { margin-top: 0; }
+
+.impressum-content p,
+.impressum-content address {
+  font-size: 15px;
+  color: #7a6a58;
+  font-style: normal;
+  line-height: 1.9;
+  margin-bottom: 4px;
+}
+
+.impressum-content a {
+  color: #8a7a68;
+  text-decoration: none;
+}
+.impressum-content a:hover { color: var(--red); }
 .contact-section {
   background: #c9987f;
   padding: 120px 40px;
@@ -647,9 +943,15 @@ footer {
 
   .services-section { padding: 60px 24px; }
   .services-grid { grid-template-columns: 1fr; gap: 2px; }
-  .service-card { padding: 36px 28px; }
+  .service-card { height: auto; perspective: none; }
+  .service-card-inner { transform-style: flat; transition: none; }
+  .service-card.flipped .service-card-inner { transform: none; }
+  .service-card-front { position: relative; padding: 32px 28px; }
+  .service-card-back { position: relative; transform: none; display: none; padding: 32px 28px; }
+  .service-card.flipped .service-card-front { display: none; }
+  .service-card.flipped .service-card-back { display: flex; }
   .service-name { font-size: 22px; }
-  .service-desc { font-size: 17px; }
+  .service-desc { font-size: 16px; }
 
   .process-section { padding: 60px 24px; text-align: left; }
   .process-steps::before { display: none; }
@@ -668,12 +970,17 @@ footer {
   .process-step .step-content { text-align: left; padding: 0; order: 2; flex: 1; }
   .process-step .step-num { order: 1; flex-shrink: 0; margin: 0; }
   .process-step .step-empty { display: none; }
-  .step-content h3 { font-size: 22px; }
+  .step-content h3 { font-size: 20px; }
   .step-content p { font-size: 16px; line-height: 1.7; }
+
+  .cal-section { padding: 60px 24px; }
+  .cal-placeholder { padding: 40px 24px; }
 
   .contact-section { padding: 60px 24px; }
   .form-row { grid-template-columns: 1fr; }
   .contact-intro { font-size: 18px; }
+
+  .impressum-section { padding: 40px 24px; }
 
   footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
 
@@ -690,7 +997,7 @@ footer {
 <div class="nav-overlay" id="navOverlay">
   <a href="#ueber" onclick="closeMenu()">Über mich</a>
   <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
-  <a href="#prozess" onclick="closeMenu()">Wie es geht</a>
+  <a href="#prozess" onclick="closeMenu()">Der Ablauf</a>
   <a href="#kontakt" onclick="closeMenu()">Anfrage</a>
 </div>
 
@@ -700,7 +1007,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#ueber">Über mich</a></li>
     <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#prozess">Wie es geht</a></li>
+    <li><a href="#prozess">Der Ablauf</a></li>
     <li><a href="#kontakt">Anfrage</a></li>
   </ul>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menü">
@@ -756,68 +1063,99 @@ footer {
       <span class="section-label">Was ich schreibe</span>
       <h2 class="section-title">Leistungen</h2>
       <div class="thin-rule" style="margin: 0 auto 0;"></div>
+      <span class="services-hint">Karte anklicken für den Preis</span>
     </div>
 
     <div class="services-grid">
 
-      <div class="service-card reveal">
-        <span class="service-number">01</span>
-        <div class="service-line"></div>
-        <div class="service-name">Ehegelübde & Traureden</div>
-        <p class="service-desc">
-          Das Versprechen eines Lebens verdient die richtigen Worte.
-          Ich helfe euch, das zu sagen, was ihr fühlt —
-          persönlich, ehrlich und unvergesslich.
-          Für den Moment, an den ihr euch immer erinnern werdet.
-        </p>
+      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <span class="service-number">01</span>
+            <div class="service-line"></div>
+            <div class="service-name">Ehegelübde & Traureden</div>
+            <p class="service-desc">Das Versprechen eines Lebens verdient die richtigen Worte — persönlich, ehrlich und unvergesslich.</p>
+          </div>
+          <div class="service-card-back">
+            <div class="service-back-label">Orientierungspreis</div>
+            <div class="service-price">ab 700 €</div>
+            <div class="service-price-note">Ehegelübde · Traurede · beides zusammen</div>
+            <div class="service-back-line"></div>
+            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card reveal">
-        <span class="service-number">02</span>
-        <div class="service-line"></div>
-        <div class="service-name">Geburtstagsreden</div>
-        <p class="service-desc">
-          Ein runder Geburtstag ist ein Moment der Würdigung.
-          Eine Rede, die den Menschen feiert —
-          mit Wärme, Humor und dem Blick
-          auf das, was wirklich zählt.
-        </p>
+      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <span class="service-number">02</span>
+            <div class="service-line"></div>
+            <div class="service-name">Geburtstagsreden</div>
+            <p class="service-desc">Eine Rede, die den Menschen feiert — mit Wärme, Humor und dem Blick auf das, was wirklich zählt.</p>
+          </div>
+          <div class="service-card-back">
+            <div class="service-back-label">Orientierungspreis</div>
+            <div class="service-price">ab 500 €</div>
+            <div class="service-price-note">Runde Geburtstage · besondere Momente</div>
+            <div class="service-back-line"></div>
+            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card reveal">
-        <span class="service-number">03</span>
-        <div class="service-line"></div>
-        <div class="service-name">Trauerreden</div>
-        <p class="service-desc">
-          Ein Abschied verdient mehr als allgemeine Worte.
-          Ich höre zu, frage nach, und schreibe eine Rede,
-          die diesen einen Menschen wirklich zeigt —
-          mit all seiner Geschichte, seiner Eigenart, seinem Licht.
-        </p>
+      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <span class="service-number">03</span>
+            <div class="service-line"></div>
+            <div class="service-name">Trauerreden</div>
+            <p class="service-desc">Ein Abschied verdient mehr als allgemeine Worte. Ich höre zu und schreibe eine Rede, die diesen Menschen wirklich zeigt.</p>
+          </div>
+          <div class="service-card-back">
+            <div class="service-back-label">Orientierungspreis</div>
+            <div class="service-price">ab 560 €</div>
+            <div class="service-price-note">Inkl. persönlichem Gespräch & Feinschliff</div>
+            <div class="service-back-line"></div>
+            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card reveal">
-        <span class="service-number">04</span>
-        <div class="service-line"></div>
-        <div class="service-name">Business-Poetik</div>
-        <p class="service-desc">
-          Sprache, die Werte sichtbar macht.
-          Für Events, Jahresfeiern, Jubiläen oder Keynotes —
-          ich schaffe poetische Texte, die Ihre Unternehmenskultur
-          in erinnerbare Worte fasst.
-        </p>
+      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <span class="service-number">04</span>
+            <div class="service-line"></div>
+            <div class="service-name">Business-Poetik</div>
+            <p class="service-desc">Sprache, die Werte sichtbar macht — für Events, Jahresfeiern, Jubiläen oder Keynotes.</p>
+          </div>
+          <div class="service-card-back">
+            <div class="service-back-label">Orientierungspreis</div>
+            <div class="service-price">ab 1.000 €</div>
+            <div class="service-price-note">Events · Keynotes · Unternehmensjubiläen</div>
+            <div class="service-back-line"></div>
+            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card reveal">
-        <span class="service-number">05</span>
-        <div class="service-line"></div>
-        <div class="service-name">Taufe & Konfirmation</div>
-        <p class="service-desc">
-          Der Beginn eines Weges verdient Worte, die begleiten.
-          Ich schreibe Ansprachen und Texte für Taufen
-          und Konfirmationen — feierlich, persönlich
-          und nah am Herzen.
-        </p>
+      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+        <div class="service-card-inner">
+          <div class="service-card-front">
+            <span class="service-number">05</span>
+            <div class="service-line"></div>
+            <div class="service-name">Taufe & Konfirmation</div>
+            <p class="service-desc">Der Beginn eines Weges verdient Worte, die begleiten — feierlich, persönlich und nah am Herzen.</p>
+          </div>
+          <div class="service-card-back">
+            <div class="service-back-label">Orientierungspreis</div>
+            <div class="service-price">ab 440 €</div>
+            <div class="service-price-note">Taufansprache · Konfirmationsrede · Segensworte</div>
+            <div class="service-back-line"></div>
+            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -827,15 +1165,15 @@ footer {
 <!-- ── PROZESS ── -->
 <div class="process-section" id="prozess">
   <span class="section-label reveal">So arbeite ich</span>
-  <h2 class="section-title reveal">Wie es geht</h2>
+  <h2 class="section-title reveal">Die Fäden zusammenführen</h2>
   <div class="thin-rule reveal" style="margin: 0 auto 0;"></div>
 
   <div class="process-steps">
 
     <div class="process-step reveal">
       <div class="step-content">
-        <h3>Gespräch</h3>
-        <p>Wir sprechen — über den Moment, den Menschen,<br>das Gefühl, das du vermitteln möchtest.</p>
+        <h3>Anfrage</h3>
+        <p>Du schreibst mir — kurz, was der Anlass ist.<br>Kein langer Brief nötig, nur ein erster Faden.</p>
       </div>
       <div class="step-num">01</div>
       <div class="step-empty"></div>
@@ -844,6 +1182,24 @@ footer {
     <div class="process-step reveal">
       <div class="step-empty"></div>
       <div class="step-num">02</div>
+      <div class="step-content" style="text-align:left; padding: 0 40px;">
+        <h3>Kostenloses Erstgespräch</h3>
+        <p>Wir treffen uns per Videocall — unverbindlich,<br>um zu sehen, ob wir zusammenpassen.</p>
+      </div>
+    </div>
+
+    <div class="process-step reveal">
+      <div class="step-content">
+        <h3>Das Gespräch</h3>
+        <p>Wir sprechen über den Moment, den Menschen,<br>das Gefühl, das du vermitteln möchtest.</p>
+      </div>
+      <div class="step-num">03</div>
+      <div class="step-empty"></div>
+    </div>
+
+    <div class="process-step reveal">
+      <div class="step-empty"></div>
+      <div class="step-num">04</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
         <h3>Schreiben</h3>
         <p>Ich webe deinen Text — sorgfältig, persönlich,<br>mit Raum für das Unausgesprochene.</p>
@@ -855,8 +1211,17 @@ footer {
         <h3>Feinschliff</h3>
         <p>Gemeinsam stimmen wir ab, bis jeder Satz<br>genau das trägt, was er tragen soll.</p>
       </div>
-      <div class="step-num">03</div>
+      <div class="step-num">05</div>
       <div class="step-empty"></div>
+    </div>
+
+    <div class="process-step reveal">
+      <div class="step-empty"></div>
+      <div class="step-num">06</div>
+      <div class="step-content" style="text-align:left; padding: 0 40px;">
+        <h3>Übergabe</h3>
+        <p>Du erhältst deinen Text — fertig zum Lesen,<br>Sprechen und im Herzen tragen.</p>
+      </div>
     </div>
 
   </div>
@@ -868,8 +1233,8 @@ footer {
     <span class="section-label reveal">Schreib mir</span>
     <h2 class="section-title reveal">Deine Anfrage</h2>
     <p class="contact-intro reveal">
-      Jeder Text beginnt mit einem Gespräch.<br>
-      Erzähl mir von deinem Moment — ich melde mich persönlich.
+      Erzähl mir doch kurz worum es geht<br>
+      und zeig mir die ersten Fäden …
     </p>
 
     <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
@@ -901,26 +1266,92 @@ footer {
 
       <div class="form-group">
         <label>Deine Nachricht</label>
-        <textarea name="nachricht" placeholder="Erzähl mir von deinem Moment — wann, für wen, was du dir wünschst ..." rows="5" required></textarea>
+        <textarea name="nachricht" placeholder="Kurz umrissen: Worum geht es? Wann ist der Termin? Alles weitere klären wir im Gespräch." rows="5" required></textarea>
+      </div>
+
+      <!-- Cal.com Accordion -->
+      <div class="cal-accordion">
+        <button type="button" class="cal-accordion-toggle" onclick="toggleCal(this)">
+          <span class="cal-accordion-label">Möchtest du gleich ein kostenloses Erstgespräch buchen?</span>
+          <span class="cal-accordion-icon">+</span>
+        </button>
+        <div class="cal-accordion-content">
+          <p class="cal-accordion-hint">Such dir einen Termin aus — 20 Minuten, per Videocall, völlig unverbindlich.</p>
+          <div class="cal-embed-placeholder">
+          <iframe
+            src="https://cal.eu/wortweberei"
+            style="width:100%; height:600px; border:none; background:transparent;"
+            title="Erstgespräch buchen"
+          ></iframe>
+        </div>
+        </div>
       </div>
 
       <button type="submit" class="btn-submit">Anfrage senden</button>
     </form>
 
-    <div id="form-success" style="display:none; margin-top:40px; color:#8a7a66; font-style:italic; font-size:18px; line-height:1.8;">
+    <div id="form-success" style="display:none; margin-top:40px; color:#4a2e1e; font-style:italic; font-size:18px; line-height:1.8;">
       Danke für deine Nachricht.<br>Ich melde mich bald persönlich bei dir.
     </div>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- ── IMPRESSUM ── -->
+<div class="impressum-section" id="impressum">
+  <div class="impressum-inner">
+    <button class="impressum-toggle" onclick="toggleImpressum(this)">
+      <span class="impressum-toggle-label">Impressum & rechtliche Hinweise</span>
+      <span class="impressum-toggle-icon">+</span>
+    </button>
+    <div class="impressum-content">
+      <h3>Angaben gemäß § 5 TMG</h3>
+      <address>
+        Carolina [Nachname]<br>
+        [Straße und Hausnummer]<br>
+        [PLZ] [Stadt]<br>
+        Deutschland
+      </address>
+
+      <h3>Kontakt</h3>
+      <p>
+        E-Mail: <a href="/cdn-cgi/l/email-protection#e3948c91979486818691868aa3938c9097868ccd8786"><span class="__cf_email__" data-cfemail="f4839b86808391969186919db4849b8780919bda9091">[email&#160;protected]</span></a><br>
+        Web: <a href="https://die-wortweberei.de">die-wortweberei.de</a>
+      </p>
+
+      <h3>Umsatzsteuer</h3>
+      <p>
+        Gemäß § 19 UStG wird keine Umsatzsteuer berechnet<br>
+        (Kleinunternehmerregelung).
+      </p>
+
+      <h3>Verantwortlich für den Inhalt</h3>
+      <p>Carolina [Nachname], Anschrift wie oben.</p>
+
+      <h3>Haftungsausschluss</h3>
+      <p>
+        Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung
+        für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten
+        sind ausschließlich deren Betreiber verantwortlich.
+      </p>
+
+      <h3>Datenschutz</h3>
+      <p>
+        Diese Website erhebt keine personenbezogenen Daten über das Kontaktformular
+        hinaus. Eingehende Nachrichten werden ausschließlich zur Bearbeitung
+        Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+      </p>
+    </div>
+  </div>
+</div>
+
+
 <footer>
   <span class="footer-name">Der rote Faden · die Wortweberei</span>
   <span class="footer-red">by Carolina</span>
   <span class="footer-copy">© 2026</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // hamburger menu
 function toggleMenu() {
   const h = document.getElementById('hamburger');
@@ -931,6 +1362,18 @@ function toggleMenu() {
 function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('navOverlay').classList.remove('open');
+}
+
+// impressum toggle
+function toggleImpressum(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+// cal accordion
+function toggleCal(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
 }
 
 // cursor — only on non-touch devices
@@ -1053,19 +1496,4 @@ const observer = new IntersectionObserver(entries => {
 });
 reveals.forEach(el => {
   if (el.closest('.hero')) {
-    el.classList.add('visible');
-  } else {
-    observer.observe(el);
-  }
-});
-
-// form submit
-function handleSubmit(e) {
-  e.preventDefault();
-  e.target.style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
-</script>
-
-</body>
-</html>
+    el.classList.add('visib
