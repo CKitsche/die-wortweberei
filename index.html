@@ -293,14 +293,26 @@ section {
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+}
+
+.service-card:nth-child(1) { grid-column: span 2; }
+.service-card:nth-child(2) { grid-column: span 2; }
+.service-card:nth-child(3) { grid-column: span 2; }
+.service-card:nth-child(4) { grid-column: 2 / span 2; }
+.service-card:nth-child(5) { grid-column: 4 / span 2; }
+
 /* ── FLIP CARD ── */
 .service-card {
-  perspective: 1000px;
-  height: 320px;
+  perspective: 1200px;
+  height: 300px;
   cursor: none;
 }
 
@@ -309,11 +321,12 @@ section {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .service-card.flipped .service-card-inner {
   transform: rotateY(180deg);
+  transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .service-card-front,
@@ -337,13 +350,7 @@ section {
 }
 
 .service-number {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: var(--red);
-  margin-bottom: 20px;
-  display: block;
-  font-weight: 300;
-  opacity: .7;
+  display: none;
 }
 
 .service-name {
@@ -372,11 +379,11 @@ section {
 
 /* Back side */
 .service-back-label {
-  font-size: 10px;
-  letter-spacing: 4px;
+  font-size: 14px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: #7a4a30;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-weight: 300;
 }
 
@@ -391,11 +398,11 @@ section {
 }
 
 .service-price-note {
-  font-size: 14px;
-  color: #7a4a30;
+  font-size: 17px;
+  color: #4a2e1e;
   font-style: italic;
   margin-bottom: 28px;
-  line-height: 1.6;
+  line-height: 1.75;
 }
 
 .service-back-line {
@@ -471,6 +478,7 @@ section {
 .step-content {
   text-align: right;
   padding: 0 40px;
+  min-width: 0;
 }
 
 .step-content h3 {
@@ -480,6 +488,8 @@ section {
   font-weight: 300;
   color: var(--ink);
   margin-bottom: 8px;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .step-content p {
@@ -487,6 +497,8 @@ section {
   color: var(--mid);
   font-style: italic;
   line-height: 1.8;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .step-num {
@@ -582,11 +594,12 @@ section {
 }
 
 .cal-accordion-label {
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2a1008;
+  font-weight: 400;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  font-style: italic;
-  color: #4a2e1e;
-  font-weight: 300;
   flex: 1;
 }
 
@@ -943,6 +956,7 @@ footer {
 
   .services-section { padding: 60px 24px; }
   .services-grid { grid-template-columns: 1fr; gap: 2px; }
+  .service-card:nth-child(n) { grid-column: auto; }
   .service-card { height: auto; perspective: none; }
   .service-card-inner { transform-style: flat; transition: none; }
   .service-card.flipped .service-card-inner { transform: none; }
@@ -1068,7 +1082,7 @@ footer {
 
     <div class="services-grid">
 
-      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+      <div class="service-card reveal" >
         <div class="service-card-inner">
           <div class="service-card-front">
             <span class="service-number">01</span>
@@ -1086,7 +1100,7 @@ footer {
         </div>
       </div>
 
-      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+      <div class="service-card reveal" >
         <div class="service-card-inner">
           <div class="service-card-front">
             <span class="service-number">02</span>
@@ -1104,7 +1118,7 @@ footer {
         </div>
       </div>
 
-      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+      <div class="service-card reveal" >
         <div class="service-card-inner">
           <div class="service-card-front">
             <span class="service-number">03</span>
@@ -1122,7 +1136,7 @@ footer {
         </div>
       </div>
 
-      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+      <div class="service-card reveal" >
         <div class="service-card-inner">
           <div class="service-card-front">
             <span class="service-number">04</span>
@@ -1140,7 +1154,7 @@ footer {
         </div>
       </div>
 
-      <div class="service-card reveal" onclick="this.classList.toggle('flipped')">
+      <div class="service-card reveal" >
         <div class="service-card-inner">
           <div class="service-card-front">
             <span class="service-number">05</span>
@@ -1219,8 +1233,8 @@ footer {
       <div class="step-empty"></div>
       <div class="step-num">06</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
-        <h3>Übergabe</h3>
-        <p>Du erhältst deinen Text — fertig zum Lesen,<br>Sprechen und im Herzen tragen.</p>
+        <h3>Übergabe / Vortrag</h3>
+        <p>Du erhältst deinen fertigen Text — zum selbst Vortragen oder ich trage ihn für dich vor.</p>
       </div>
     </div>
 
@@ -1232,10 +1246,6 @@ footer {
   <div class="contact-inner">
     <span class="section-label reveal">Schreib mir</span>
     <h2 class="section-title reveal">Deine Anfrage</h2>
-    <p class="contact-intro reveal">
-      Erzähl mir doch kurz worum es geht<br>
-      und zeig mir die ersten Fäden …
-    </p>
 
     <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
       <input type="hidden" name="form-name" value="anfrage">
@@ -1266,13 +1276,13 @@ footer {
 
       <div class="form-group">
         <label>Deine Nachricht</label>
-        <textarea name="nachricht" placeholder="Kurz umrissen: Worum geht es? Wann ist der Termin? Alles weitere klären wir im Gespräch." rows="5" required></textarea>
+        <textarea name="nachricht" placeholder="Erzähl mir doch kurz worum es geht und zeig mir die ersten Fäden …" rows="5" required></textarea>
       </div>
 
       <!-- Cal.com Accordion -->
       <div class="cal-accordion">
         <button type="button" class="cal-accordion-toggle" onclick="toggleCal(this)">
-          <span class="cal-accordion-label">Möchtest du gleich ein kostenloses Erstgespräch buchen?</span>
+          <span class="cal-accordion-label">Termin für dein kostenloses Erstgespräch</span>
           <span class="cal-accordion-icon">+</span>
         </button>
         <div class="cal-accordion-content">
@@ -1477,9 +1487,15 @@ window.addEventListener('scroll', () => {
 // reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 
-// stagger delay for service cards
-document.querySelectorAll('.services-grid .service-card').forEach((el, i) => {
-  el.style.transitionDelay = (i * 0.12) + 's';
+// flip cards — only one at a time
+document.querySelectorAll('.services-grid .service-card').forEach((el) => {
+  el.addEventListener('click', function(e) {
+    // don't flip if clicking the "Anfrage stellen" link
+    if (e.target.closest('.service-back-cta')) return;
+    const wasFlipped = this.classList.contains('flipped');
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('flipped'));
+    if (!wasFlipped) this.classList.add('flipped');
+  });
 });
 
 const observer = new IntersectionObserver(entries => {
