@@ -23,7 +23,10 @@
   --rule:     #c8b49a;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-timeline: none; }
+@supports (scroll-behavior: smooth) {
+  html { --scroll-duration: 1.2s; }
+}
 
 body {
   background: var(--cream);
@@ -414,7 +417,7 @@ section {
 }
 
 .service-back-cta {
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #4a1e10;
@@ -794,7 +797,7 @@ section {
 
 .form-next-step {
   text-align: center;
-  font-size: 17px;
+  font-size: 19px;
   font-style: italic;
   color: #7a4a30;
   margin-top: 8px;
@@ -1052,7 +1055,7 @@ footer {
             <div class="service-price">ab 700 €</div>
             <div class="service-price-note">Ehegelübde · Traurede · beides zusammen</div>
             <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
       </div>
@@ -1070,7 +1073,7 @@ footer {
             <div class="service-price">ab 500 €</div>
             <div class="service-price-note">Runde Geburtstage · besondere Momente</div>
             <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
       </div>
@@ -1088,7 +1091,7 @@ footer {
             <div class="service-price">ab 560 €</div>
             <div class="service-price-note">Inkl. persönlichem Gespräch & Feinschliff</div>
             <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
       </div>
@@ -1106,7 +1109,7 @@ footer {
             <div class="service-price">ab 1.000 €</div>
             <div class="service-price-note">Events · Keynotes · Unternehmensjubiläen</div>
             <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
       </div>
@@ -1124,7 +1127,7 @@ footer {
             <div class="service-price">ab 440 €</div>
             <div class="service-price-note">Taufansprache · Konfirmationsrede · Segensworte</div>
             <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="event.stopPropagation()">Anfrage stellen →</a>
+            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
       </div>
@@ -1144,7 +1147,7 @@ footer {
     <div class="process-step reveal">
       <div class="step-content">
         <h3>Anfrage</h3>
-        <p>Du schreibst mir — kurz, was der Anlass ist.<br>Kein langer Brief nötig, nur ein erster Faden.</p>
+        <p>Du schreibst mir — kurz, was der Anlass ist. Kein langer Brief nötig, nur ein erster Faden.</p>
       </div>
       <div class="step-num">01</div>
       <div class="step-empty"></div>
@@ -1155,14 +1158,14 @@ footer {
       <div class="step-num">02</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
         <h3>Kostenloses Erstgespräch</h3>
-        <p>Wir treffen uns per Videocall — unverbindlich,<br>um zu sehen, ob wir zusammenpassen.</p>
+        <p>Wir treffen uns per Videocall — unverbindlich, um zu sehen, ob wir zusammenpassen.</p>
       </div>
     </div>
 
     <div class="process-step reveal">
       <div class="step-content">
         <h3>Das Gespräch</h3>
-        <p>Wir sprechen über den Moment, den Menschen,<br>das Gefühl, das du vermitteln möchtest.</p>
+        <p>Wir sprechen über den Moment, den Menschen, das Gefühl, das du vermitteln möchtest.</p>
       </div>
       <div class="step-num">03</div>
       <div class="step-empty"></div>
@@ -1173,14 +1176,14 @@ footer {
       <div class="step-num">04</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
         <h3>Schreiben</h3>
-        <p>Ich webe deinen Text — sorgfältig, persönlich,<br>mit Raum für das Unausgesprochene.</p>
+        <p>Ich webe deinen Text — sorgfältig, persönlich, mit Raum für das Unausgesprochene.</p>
       </div>
     </div>
 
     <div class="process-step reveal">
       <div class="step-content">
         <h3>Feinschliff</h3>
-        <p>Gemeinsam stimmen wir ab, bis jeder Satz<br>genau das trägt, was er tragen soll.</p>
+        <p>Gemeinsam stimmen wir ab, bis jeder Satz genau das trägt, was er tragen soll.</p>
       </div>
       <div class="step-num">05</div>
       <div class="step-empty"></div>
@@ -1408,10 +1411,35 @@ if (!isTouch) {
     ctx.lineCap     = 'round';
     ctx.lineJoin    = 'round';
     ctx.stroke();
+
+    // cursor: filled circle + pointed tip
+    const cx = mouse.x;
+    const cy = mouse.y;
+    const r = 5;
+    const tipLen = 12;
+
+    // outer ring
     ctx.beginPath();
-    ctx.arc(points[0].x, points[0].y, 2, 0, Math.PI * 2);
+    ctx.arc(cx, cy, r + 2, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(177, 43, 36, 0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // filled dot
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.fillStyle = RED;
     ctx.fill();
+
+    // pointed tip below
+    ctx.beginPath();
+    ctx.moveTo(cx - 3, cy + r - 1);
+    ctx.lineTo(cx + 3, cy + r - 1);
+    ctx.lineTo(cx, cy + r + tipLen);
+    ctx.closePath();
+    ctx.fillStyle = RED;
+    ctx.fill();
+
     requestAnimationFrame(drawThread);
   }
   drawThread();
@@ -1426,7 +1454,13 @@ window.addEventListener('scroll', () => {
 // reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
 
-// flip cards — only one at a time
+// smooth scroll from service card to contact
+function smoothScrollToContact(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('flipped'));
+  document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 document.querySelectorAll('.services-grid .service-card').forEach((el) => {
   el.addEventListener('click', function(e) {
     // don't flip if clicking the "Anfrage stellen" link
