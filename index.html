@@ -779,7 +779,7 @@ section {
   border: 0.5px solid #4a1e10;
   color: #4a1e10;
   font-family: 'Cormorant SC', serif;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 5px;
   font-weight: 300;
   cursor: none;
@@ -790,6 +790,15 @@ section {
   background: #4a1e10;
   color: var(--ivory);
   border-color: #4a1e10;
+}
+
+.form-next-step {
+  text-align: center;
+  font-size: 17px;
+  font-style: italic;
+  color: #7a4a30;
+  margin-top: 8px;
+  line-height: 1.5;
 }
 
 /* ── FOOTER ── */
@@ -1194,6 +1203,9 @@ footer {
   <div class="contact-inner">
     <span class="section-label reveal">Schreib mir</span>
     <h2 class="section-title reveal">Deine Anfrage</h2>
+    <p class="contact-intro reveal">
+      Erzähl mir kurz worum es geht —<br>ich antworte dir persönlich.
+    </p>
 
     <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
       <input type="hidden" name="form-name" value="anfrage">
@@ -1224,10 +1236,11 @@ footer {
 
       <div class="form-group">
         <label>Deine Nachricht</label>
-        <textarea name="nachricht" placeholder="Erzähl mir doch kurz worum es geht und zeig mir die ersten Fäden …" rows="5" required></textarea>
+        <textarea name="nachricht" placeholder="Zeig mir den roten Faden …" rows="5" required></textarea>
       </div>
 
       <button type="submit" class="btn-submit">Anfrage senden</button>
+      <p class="form-next-step">und buche gleich dein kostenloses Erstgespräch.</p>
     </form>
   </div>
 </div>
