@@ -573,82 +573,30 @@ section {
   border-color: var(--ink);
 }
 
-/* ── CAL ACCORDION ── */
-.cal-accordion {
-  border-top: 0.5px solid #a06848;
-  border-bottom: 0.5px solid #a06848;
-  padding: 4px 0;
+/* ── FORM SUCCESS + CAL ── */
+.form-success-msg {
+  margin-top: 40px;
+  color: #4a2e1e;
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.8;
+  text-align: center;
+  margin-bottom: 48px;
 }
 
-.cal-accordion-toggle {
-  background: none;
-  border: none;
-  cursor: none;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-  gap: 16px;
-  text-align: left;
+.form-success-cal {
+  margin-top: 8px;
 }
 
-.cal-accordion-label {
+.form-success-cal-hint {
   font-size: 14px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #2a1008;
   font-weight: 400;
   font-family: 'Cormorant Garamond', serif;
-  flex: 1;
-}
-
-.cal-accordion-icon {
-  width: 22px;
-  height: 22px;
-  border: 0.5px solid #7a4a30;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #7a4a30;
-  font-size: 14px;
-  flex-shrink: 0;
-  transition: transform .4s ease;
-  line-height: 1;
-}
-
-.cal-accordion-toggle.open .cal-accordion-icon {
-  transform: rotate(45deg);
-}
-
-.cal-accordion-content {
-  display: none;
-  padding-bottom: 24px;
-}
-
-.cal-accordion-content.open { display: block; }
-
-.cal-accordion-hint {
-  font-size: 16px;
-  font-style: italic;
-  color: #4a2e1e;
-  margin-bottom: 20px;
-  line-height: 1.7;
-}
-
-.cal-embed-placeholder {
-  border: 0.5px solid #a06848;
-  padding: 48px 24px;
-  text-align: center;
-}
-
-.cal-embed-placeholder p {
-  font-size: 15px;
-  color: #7a4a30;
-  font-style: italic;
-  line-height: 1.8;
-  letter-spacing: 1px;
+  margin-bottom: 24px;
+  text-align: left;
 }
 
 /* ── IMPRESSUM ── */
@@ -1279,30 +1227,8 @@ footer {
         <textarea name="nachricht" placeholder="Erzähl mir doch kurz worum es geht und zeig mir die ersten Fäden …" rows="5" required></textarea>
       </div>
 
-      <!-- Cal.com Accordion -->
-      <div class="cal-accordion">
-        <button type="button" class="cal-accordion-toggle" onclick="toggleCal(this)">
-          <span class="cal-accordion-label">Termin für dein kostenloses Erstgespräch</span>
-          <span class="cal-accordion-icon">+</span>
-        </button>
-        <div class="cal-accordion-content">
-          <p class="cal-accordion-hint">Such dir einen Termin aus — 20 Minuten, per Videocall, völlig unverbindlich.</p>
-          <div class="cal-embed-placeholder">
-          <iframe
-            src="https://cal.eu/wortweberei"
-            style="width:100%; height:600px; border:none; background:transparent;"
-            title="Erstgespräch buchen"
-          ></iframe>
-        </div>
-        </div>
-      </div>
-
       <button type="submit" class="btn-submit">Anfrage senden</button>
     </form>
-
-    <div id="form-success" style="display:none; margin-top:40px; color:#4a2e1e; font-style:italic; font-size:18px; line-height:1.8;">
-      Danke für deine Nachricht.<br>Ich melde mich bald persönlich bei dir.
-    </div>
   </div>
 </div>
 
@@ -1518,12 +1444,7 @@ reveals.forEach(el => {
   }
 });
 
-// form submit
-function handleSubmit(e) {
-  e.preventDefault();
-  e.target.style.display = 'none';
-  document.getElementById('form-success').style.display = 'block';
-}
+// form submit — Netlify handles redirect to success.html
 </script>
 
 </body>

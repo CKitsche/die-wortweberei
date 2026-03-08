@@ -5,49 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Danke – Der rote Faden</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Cormorant+SC:wght@300&display=swap');
-* { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Cormorant+SC:wght@300;400&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   background: #f5f1ea;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px;
+  padding: 80px 40px;
+  color: #1c1208;
 }
-.inner { max-width: 500px; }
+.inner { max-width: 700px; margin: 0 auto; text-align: center; }
 h1 {
   font-family: 'Cormorant SC', serif;
-  font-size: clamp(32px, 6vw, 52px);
+  font-size: clamp(38px, 6vw, 60px);
   font-weight: 300;
-  letter-spacing: 5px;
+  letter-spacing: 6px;
   color: #1c1208;
   margin-bottom: 24px;
 }
-p {
-  font-size: 20px;
-  font-style: italic;
-  color: #6a5a46;
-  line-height: 1.8;
-  margin-bottom: 48px;
-}
 .rule {
-  width: 60px;
-  height: 0.5px;
+  width: 60px; height: 0.5px;
   background: linear-gradient(90deg, #b12b24, transparent);
+  margin: 0 auto 32px;
+}
+.thank-msg {
+  font-size: 22px; font-style: italic;
+  color: #6a5a46; line-height: 1.8; margin-bottom: 64px;
+}
+.cal-divider {
+  width: 0.5px; height: 48px;
+  background: linear-gradient(180deg, transparent, #c8b49a);
   margin: 0 auto 48px;
 }
-a {
+.cal-label {
+  font-size: 13px; letter-spacing: 5px; text-transform: uppercase;
+  color: #a89880; display: block; margin-bottom: 12px; font-weight: 300;
+}
+.cal-heading {
   font-family: 'Cormorant SC', serif;
-  font-size: 12px;
-  letter-spacing: 4px;
-  color: #b12b24;
-  text-decoration: none;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300; letter-spacing: 4px;
+  color: #1c1208; margin-bottom: 16px;
+}
+.cal-hint {
+  font-size: 19px; font-style: italic;
+  color: #6a5a46; line-height: 1.8; margin-bottom: 40px;
+}
+iframe { width: 100%; height: 650px; border: none; background: transparent; }
+.back-link {
+  display: inline-block; margin-top: 48px;
+  font-family: 'Cormorant SC', serif;
+  font-size: 11px; letter-spacing: 4px;
+  color: #b12b24; text-decoration: none;
   border-bottom: 0.5px solid #b12b24;
-  padding-bottom: 4px;
+  padding-bottom: 4px; opacity: .7; transition: opacity .2s;
+}
+.back-link:hover { opacity: 1; }
+@media (max-width: 768px) {
+  body { padding: 60px 24px; }
+  .thank-msg { font-size: 18px; }
+  .cal-hint { font-size: 16px; }
+  iframe { height: 700px; }
 }
 </style>
 </head>
@@ -55,8 +74,19 @@ a {
   <div class="inner">
     <h1>Danke</h1>
     <div class="rule"></div>
-    <p>Deine Nachricht ist angekommen.<br>Ich melde mich persönlich bei dir.</p>
-    <a href="/">Zurück zur Seite</a>
+    <p class="thank-msg">
+      Deine Nachricht ist angekommen.<br>
+      Ich melde mich persönlich bei dir.
+    </p>
+    <div class="cal-divider"></div>
+    <span class="cal-label">Nächster Schritt</span>
+    <h2 class="cal-heading">Erstgespräch buchen</h2>
+    <p class="cal-hint">
+      Such dir gleich einen Termin aus —<br>
+      20 Minuten, per Videocall, völlig unverbindlich.
+    </p>
+    <iframe src="https://cal.eu/wortweberei" title="Erstgespräch buchen"></iframe>
+    <a href="/" class="back-link">Zurück zur Seite</a>
   </div>
 </body>
 </html>
