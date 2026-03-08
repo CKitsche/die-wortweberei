@@ -1496,4 +1496,19 @@ const observer = new IntersectionObserver(entries => {
 });
 reveals.forEach(el => {
   if (el.closest('.hero')) {
-    el.classList.add('visib
+    el.classList.add('visible');
+  } else {
+    observer.observe(el);
+  }
+});
+
+// form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
