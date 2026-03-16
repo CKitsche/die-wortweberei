@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Der rote Faden – die Wortweberei by Carolina. Trauerreden, Hochzeitsgelübde, Business-Poetik, Geburtstagsreden und Taufreden. Worte die bleiben.">
-<title>Der rote Faden – die Wortweberei by Carolina</title>
+<meta name="description" content="Der rote Faden – die Wortweberei Carolina J. Kitsche. Trauerreden, Hochzeitsgelübde, Business-Poetik, Geburtstagsreden und Taufreden. Worte die bleiben.">
+<title>Der rote Faden – die Wortweberei Carolina J. Kitsche</title>
 
 <!-- Open Graph / Link Preview -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://die-wortweberei.de">
-<meta property="og:title" content="Der rote Faden – die Wortweberei by Carolina">
+<meta property="og:title" content="Der rote Faden – die Wortweberei Carolina J. Kitsche">
 <meta property="og:description" content="Worte, die tragen. Sätze, die bleiben. Texte für die Momente, die zählen.">
 <meta property="og:image" content="https://die-wortweberei.de/meta_logo.png">
 <meta property="og:locale" content="de_DE">
 
 <!-- Twitter / iMessage -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Der rote Faden – die Wortweberei by Carolina">
+<meta name="twitter:title" content="Der rote Faden – die Wortweberei Carolina J. Kitsche">
 <meta name="twitter:description" content="Worte, die tragen. Sätze, die bleiben. Texte für die Momente, die zählen.">
 <meta name="twitter:image" content="https://die-wortweberei.de/meta_logo.png">
 <style>
@@ -283,6 +283,289 @@ section {
   opacity: .7;
 }
 
+/* ── TESTIMONIALS ── */
+.testimonials-section {
+  background: var(--cream);
+  padding: 100px 40px;
+  border-bottom: 0.5px solid var(--border);
+}
+.testimonials-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 48px;
+}
+.testimonial {
+  border-top: 0.5px solid var(--red);
+  padding-top: 32px;
+}
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  color: var(--red);
+  line-height: 0.6;
+  margin-bottom: 24px;
+  opacity: 0.4;
+  font-weight: 300;
+}
+.testimonial-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(17px, 1.3vw, 20px);
+  font-style: italic;
+  color: var(--mid);
+  line-height: 1.9;
+  margin-bottom: 24px;
+  font-weight: 300;
+}
+.testimonial-name {
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--light);
+  font-weight: 300;
+}
+@media (max-width: 768px) {
+  .testimonials-section { padding: 60px 24px; }
+  .testimonials-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ── CAFÉ SATZ ── */
+.cafe-satz-section {
+  background: var(--ivory);
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 120px 40px;
+}
+.cafe-satz-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.cafe-satz-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(22px, 2vw, 30px);
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.cafe-satz-text {
+  font-size: clamp(18px, 1.4vw, 21px);
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.9;
+  margin-bottom: 48px;
+}
+.cafe-satz-origin {
+  border-left: 0.5px solid var(--red);
+  padding-left: 28px;
+  margin: 40px 0 48px;
+}
+.cafe-satz-origin p {
+  font-size: clamp(16px, 1.2vw, 18px);
+  color: var(--light);
+  font-style: italic;
+  line-height: 1.9;
+}
+.cafe-satz-origin em {
+  color: var(--red);
+  font-style: italic;
+}
+.cafe-satz-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+  border-top: 0.5px solid var(--border);
+  padding-top: 32px;
+}
+.cafe-satz-detail {
+  display: flex;
+  gap: 32px;
+  align-items: baseline;
+}
+.cafe-satz-detail-label {
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--light);
+  font-weight: 300;
+  min-width: 60px;
+}
+.cafe-satz-detail-text {
+  font-size: 18px;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.7;
+}
+.cafe-satz-cta {
+  font-family: 'Cormorant SC', serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--ink);
+  padding-bottom: 4px;
+  transition: color .2s, border-color .2s;
+  font-weight: 300;
+}
+.cafe-satz-cta:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+@media (max-width: 768px) {
+  .cafe-satz-section { padding: 60px 24px; }
+  .cafe-satz-detail { flex-direction: column; gap: 4px; }
+}
+
+/* ── SERVICE INFO EXPAND ── */
+.service-expand {
+  display: none;
+  background: var(--cream);
+  border-top: 0.5px solid var(--border);
+  padding: 40px;
+  animation: fadeIn .4s ease;
+}
+.service-expand.open { display: block; }
+
+.service-expand-text {
+  font-size: 17px;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.service-expand-list {
+  font-size: 16px;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 2;
+  padding-left: 0;
+  list-style: none;
+}
+.service-expand-list li::before {
+  content: '·';
+  color: var(--red);
+  margin-right: 10px;
+}
+
+.service-expand-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 32px;
+  border-bottom: 0.5px solid var(--border);
+}
+.service-tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-family: 'Cormorant SC', serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--light);
+  cursor: none;
+  border-bottom: 1.5px solid transparent;
+  margin-bottom: -0.5px;
+  transition: color .2s, border-color .2s;
+  font-weight: 300;
+}
+.service-tab-btn.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+.service-tab-content { display: none; }
+.service-tab-content.active { display: block; }
+
+.service-more-btn {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4a1e10;
+  background: rgba(74, 30, 16, 0.08);
+  border: 0.5px solid rgba(74, 30, 16, 0.3);
+  cursor: none;
+  font-family: 'Cormorant SC', serif;
+  padding: 10px 20px;
+  margin-top: 8px;
+  display: inline-block;
+  transition: background .2s, color .2s;
+  font-weight: 300;
+  width: 100%;
+  text-align: left;
+}
+.service-more-btn:hover { background: rgba(74, 30, 16, 0.16); }
+.service-more-btn .more-arrow {
+  display: inline-block;
+  transition: transform .3s;
+  margin-left: 6px;
+  float: right;
+}
+.service-more-btn.open .more-arrow { transform: rotate(180deg); }
+
+@media (max-width: 768px) {
+  .service-expand { padding: 24px; }
+  .service-tab-btn { padding: 10px 16px; font-size: 11px; cursor: auto; }
+  .service-more-btn { cursor: auto; }
+}
+
+/* ── CATCHPHRASE ── */
+.catchphrase-section {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 60px 80px;
+  text-align: center;
+}
+.catchphrase-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  color: var(--ink);
+  line-height: 1.6;
+  font-weight: 300;
+}
+.catchphrase-text em {
+  color: var(--red);
+  font-style: italic;
+}
+
+/* ── DREI SEKTIONEN ── */
+.about-pillars {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 60px 120px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+.about-pillar {
+  border-top: 0.5px solid var(--red);
+  padding-top: 32px;
+}
+.about-pillar-title {
+  font-family: 'Cormorant SC', serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--ink);
+  font-weight: 300;
+  margin-bottom: 20px;
+  display: block;
+}
+.about-pillar p {
+  font-size: clamp(17px, 1.3vw, 19px);
+  color: var(--mid);
+  line-height: 1.9;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .catchphrase-section { padding: 0 24px 60px; }
+  .about-pillars { grid-template-columns: 1fr; padding: 0 24px 60px; gap: 40px; }
+}
+
 /* ── LEISTUNGEN ── */
 .services-section {
   background: var(--ivory);
@@ -328,15 +611,16 @@ section {
 
 /* ── FLIP CARD ── */
 .service-card {
-  perspective: 1200px;
-  height: 300px;
   cursor: none;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card-inner {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 340px;
   transform-style: preserve-3d;
   transition: transform 1.4s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
@@ -352,18 +636,20 @@ section {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  padding: 44px 40px;
+  padding: 36px 40px;
   background: var(--cream);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .service-card-back {
   transform: rotateY(180deg);
   background: #c9987f;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
+  padding: 32px 40px;
 }
 
 .service-number {
@@ -396,42 +682,43 @@ section {
 
 /* Back side */
 .service-back-label {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #7a4a30;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   font-weight: 300;
+  margin-top: 12px;
 }
 
 .service-price {
   font-family: 'Cormorant SC', serif;
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: clamp(20px, 2vw, 26px);
   font-weight: 300;
   color: #1c1208;
   letter-spacing: 3px;
   line-height: 1;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .service-price-note {
-  font-size: 17px;
+  font-size: 16px;
   color: #4a2e1e;
   font-style: italic;
-  margin-bottom: 28px;
-  line-height: 1.75;
+  margin-bottom: 12px;
+  line-height: 1.6;
 }
 
 .service-back-line {
   width: 32px;
   height: 0.5px;
   background: #7a4a30;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   opacity: .6;
 }
 
 .service-back-cta {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #4a1e10;
@@ -984,7 +1271,7 @@ footer {
 <!-- mobile nav overlay -->
 <div class="nav-overlay" id="navOverlay">
   <a href="#ueber" onclick="closeMenu()">Über mich</a>
-  <a href="#leistungen" onclick="closeMenu()">Leistungen</a>
+  <a href="#leistungen" onclick="closeMenu()">Angebote</a>
   <a href="#prozess" onclick="closeMenu()">Der Ablauf</a>
   <a href="#kontakt" onclick="closeMenu()">Anfrage</a>
 </div>
@@ -994,7 +1281,7 @@ footer {
   <a href="#" class="nav-logo">Der rote Faden · <span>die Wortweberei</span></a>
   <ul class="nav-links">
     <li><a href="#ueber">Über mich</a></li>
-    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#leistungen">Angebote</a></li>
     <li><a href="#prozess">Der Ablauf</a></li>
     <li><a href="#kontakt">Anfrage</a></li>
   </ul>
@@ -1005,10 +1292,10 @@ footer {
 
 <!-- ── HERO ── -->
 <section class="hero" id="hero">
-  <img src="Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei by Carolina" class="hero-logo">
+  <img src="Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei Carolina J. Kitsche" class="hero-logo">
   <p class="hero-tagline">
     Worte, die tragen. Sätze, die bleiben.<br>
-    Texte, die genau das sagen, was du fühlst.
+    Für Momente, die verbinden.
   </p>
   <div class="hero-scroll">
     <span>Entdecken</span>
@@ -1017,30 +1304,157 @@ footer {
 </section>
 
 <!-- ── ÜBER CAROLINA ── -->
-<div class="about" id="ueber">
-  <div class="about-text reveal">
-    <span class="section-label">Über mich</span>
-    <h2 class="section-title">Carolina</h2>
-    <div class="thin-rule"></div>
-    <p>
-      Ich glaube, dass jeder Moment im Leben einen Faden hat —
-      einen roten Faden, der alles verbindet. Meine Aufgabe ist es,
-      diesen Faden zu finden und in Worte zu weben.
-    </p>
-    <p>
-      Ob Abschied oder Anfang, ob Lachen oder Trauer —
-      ich schreibe Texte, die genau zu diesem einen Menschen passen.
-      Nicht aus einer Schublade. Sondern aus echtem Zuhören.
-    </p>
-    <div class="about-quote">
-      <blockquote>
-        „Ein guter Text ist wie ein roter Faden —<br>
-        er führt, ohne dass man ihn sieht."
-      </blockquote>
+<div id="ueber" style="padding-top: 80px;">
+
+  <!-- Drei Spalten zuerst -->
+  <div class="about-pillars" style="padding-top: 0;">
+    <div class="about-pillar reveal">
+      <span class="about-pillar-title">Meine Arbeit</span>
+      <p>
+        Diese Arbeit ist meine Entdeckung. Schreiben bereitet mir dann die größte Freude,
+        wenn ich es teile — wenn Worte jemanden erreichen, der sie nicht erwartet hat.
+        Was mich antreibt, ist das Menschliche in seiner ganzen Breite: das Abgründige,
+        das Liebevolle, die Gleichzeitigkeit von allem.
+      </p>
+    </div>
+    <div class="about-pillar reveal">
+      <span class="about-pillar-title">Meine Vision</span>
+      <p>
+        Ich möchte Momente schenken, die bewegen und zum Innehalten anstiften —
+        Worte finden, die das ausdrücken, was uns als Menschen ausmacht und verbindet.
+      </p>
+    </div>
+    <div class="about-pillar reveal">
+      <span class="about-pillar-title">Was ich teile</span>
+      <p>
+        Jeder Mensch trägt besondere Geschichten in sich. Sie alle sind es wert,
+        gehört und erzählt zu werden. Wer eine Geschichte mit mir teilt, dem bin ich da —
+        um den Moment einzufangen und in Worte zu fassen.
+      </p>
     </div>
   </div>
-  <div class="about-visual reveal">
-    <img src="uber_mich.png" alt="Carolina" style="width: min(320px, 80vw); display: block;">
+
+  <!-- Catchphrase -->
+  <div class="catchphrase-section reveal">
+    <p class="catchphrase-text">
+      Das Abgründige, das Liebevolle —<br>
+      <em>und die Gleichzeitigkeit von allem.</em>
+    </p>
+  </div>
+
+  <!-- Persönliche Geschichte -->
+  <div class="about">
+    <div class="about-text reveal">
+      <span class="section-label">Über mich</span>
+      <h2 class="section-title">Carolina</h2>
+      <div class="thin-rule"></div>
+      <p>
+        Angefangen hat es mit Geschenken: Nach Gesprächen mit Freunden und Familie
+        schrieb ich Texte für sie – und war tief berührt, wie sehr die Worte sie erreichten.
+        Daraus entstand Café Satz – eine Einladung an Fremde, eine Stunde lang bei einer Tasse
+        Kaffee über Gott und die Welt zu sprechen. Jedes Gespräch wurde zur Inspiration
+        für einen Text, der nur für diese eine Person geschrieben war.
+      </p>
+      <p>
+        Seitdem folge ich dieser Inspiration – und fasse Menschen, Geschichten und Momente in Worte.
+      </p>
+      <p style="font-size: clamp(15px, 1.1vw, 17px); color: var(--light); font-style: italic; line-height: 1.8; margin-top: 32px; border-top: 0.5px solid var(--border); padding-top: 24px;">
+        Der rote Faden – in der griechischen Mythologie Rettung aus dem Labyrinth,
+        in der chinesischen und japanischen Tradition das unsichtbare Band zwischen zwei Menschen,
+        bei Goethe das Unverwechselbare einer Geschichte.
+        Ein altes Bild. Und das treffendste, das ich kenne –
+        genau diesen Faden suche ich in deiner Geschichte.
+      </p>
+    </div>
+    <div class="about-visual reveal">
+      <img src="uber_mich.png" alt="Carolina J. Kitsche" style="width: min(320px, 80vw); display: block;">
+    </div>
+  </div>
+
+  <!-- CTA nach Über mich -->
+  <div class="reveal" style="text-align: center; padding: 0 60px 120px;">
+    <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" style="display: inline-block; padding: 18px 56px; border: 0.5px solid var(--ink); color: var(--ink); text-decoration: none; font-family: 'Cormorant SC', serif; font-size: 14px; letter-spacing: 5px; font-weight: 300; transition: background .3s, color .3s;">Jetzt anfragen</a>
+    <p style="margin-top: 16px; font-size: 15px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
+  </div>
+
+</div>
+
+<!-- ── CAFÉ SATZ ── -->
+<div class="cafe-satz-section reveal">
+  <div class="cafe-satz-inner">
+    <span class="section-label" style="color: var(--light);">Ein besonderes Angebot</span>
+    <h2 class="section-title" style="color: var(--ink);">Café Satz</h2>
+    <div class="thin-rule" style="margin: 0 0 40px;"></div>
+
+    <p class="cafe-satz-lead">
+      Eine Tasse Kaffee. Ein Gespräch. Dein literarisches Souvenir.
+    </p>
+
+    <p class="cafe-satz-text">
+      Café Satz ist eine Einladung: Wir treffen uns in einem Café deiner Wahl in Hamburg,
+      sprechen eine Stunde über Gott und die Welt – und innerhalb einer Woche erhältst du
+      einen Text, der nur aus diesem einen Gespräch entstanden ist.
+      Persönlich, überraschend, unwiederholbar.
+    </p>
+
+    <div class="cafe-satz-origin">
+      <p>
+        Diese Geschichte beginnt mit meiner Oma. Sie kochte ihren Mokka in einem
+        blumenverzierten Emailkännchen und las Kaffeesatz – für uns, für sich, für alle,
+        die wissen wollten, was sich darin verbarg. Ihre Deutungen waren so frei wie die
+        Bilder, die sich ihr offenbarten. Kein Limit für die Fantasie.
+        So begann meine Liebe zum <em>Kaffeesatz</em> – und zur Sprache.
+      </p>
+    </div>
+
+    <div class="cafe-satz-details">
+      <div class="cafe-satz-detail">
+        <span class="cafe-satz-detail-label">Wo</span>
+        <span class="cafe-satz-detail-text">In einem Café deiner Wahl · Hamburg & Umland</span>
+      </div>
+      <div class="cafe-satz-detail">
+        <span class="cafe-satz-detail-label">Dauer</span>
+        <span class="cafe-satz-detail-text">Eine Stunde Gespräch · Text innerhalb einer Woche</span>
+      </div>
+      <div class="cafe-satz-detail">
+        <span class="cafe-satz-detail-label">Preis</span>
+        <span class="cafe-satz-detail-text">Du zahlst, was es dir wert ist – nach Erhalt des Textes.</span>
+      </div>
+      <div class="cafe-satz-detail">
+        <span class="cafe-satz-detail-label">Instagram</span>
+        <span class="cafe-satz-detail-text"><a href="https://www.instagram.com/caros.cafe.satz" target="_blank" style="color: var(--mid); text-decoration: none; border-bottom: 0.5px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s;" onmouseover="this.style.color='var(--red)'; this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--mid)'; this.style.borderColor='var(--border)'">@caros.cafe.satz</a></span>
+      </div>
+    </div>
+
+    <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" class="cafe-satz-cta">Lass dich überraschen →</a>
+  </div>
+</div>
+
+<!-- ── TESTIMONIALS ── -->
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <span class="section-label reveal">Stimmen</span>
+    <div class="testimonials-grid">
+
+      <div class="testimonial reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Du hast mich zu Tränen gerührt. Und deine Stimme, wie du das vorliest… ich schätze deine Arbeit so sehr. Du hast ein Riesentalent. Dieser wundervolle Text ist jetzt mein Schatz.</p>
+        <span class="testimonial-name">— Dilan</span>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Caro, it's so beautiful. I loved meeting you, and our time together. You are a special and gifted listener and artist. Thank you again for the beautiful words!</p>
+        <span class="testimonial-name">— Jane</span>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Ich wusste nicht, was mich erwartet – und war völlig überwältigt. Carolina hat in unserem Gespräch etwas gefunden, das ich selbst kaum in Worte hätte fassen können. Der Text hat mich noch lange begleitet.</p>
+        <span class="testimonial-name">— Lisa</span>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -1049,105 +1463,207 @@ footer {
   <div class="services-inner">
     <div class="services-header reveal">
       <span class="section-label">Was ich schreibe</span>
-      <h2 class="section-title">Leistungen</h2>
+      <h2 class="section-title">Angebote</h2>
       <div class="thin-rule" style="margin: 0 auto 0;"></div>
-      <span class="services-hint">Karte anklicken für den Preis</span>
+      <span class="services-hint">Klick auf eine Karte – Anlässe, Details und Orientierungspreis auf einen Blick.</span>
     </div>
 
     <div class="services-grid">
 
-      <div class="service-card reveal" >
+      <!-- 01 Ehegelübde & Traureden -->
+      <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <span class="service-number">01</span>
             <div class="service-line"></div>
             <div class="service-name">Ehegelübde & Traureden</div>
             <p class="service-desc">Das Versprechen eines Lebens verdient die richtigen Worte — persönlich, ehrlich und unvergesslich.</p>
           </div>
           <div class="service-card-back">
-            <div class="service-back-label">Orientierungspreis</div>
-            <div class="service-price">ab 700 €</div>
-            <div class="service-price-note">Ehegelübde · Traurede · beides zusammen</div>
+            <div class="service-line" style="background:#7a4a30;"></div>
+            <div class="service-price-note" style="margin-bottom:16px;">Ehegelübde · Traurede · freie Trauung</div>
+            <button class="service-more-btn" onclick="toggleExpand(event,'expand-01')">Mehr erfahren <span class="more-arrow">↓</span></button>
+            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price" style="margin-bottom:16px;">ab 700 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
+        <div class="service-expand" id="expand-01">
+          <p class="service-expand-text">
+            Kennenlernen als Paar: eure Geschichte, eure Eigenheiten, eure Zukunftswünsche.
+            Anschließend je ein Einzelgespräch für die persönlichen Gelübde.
+            Auf Wunsch halte ich die Rede bei eurer freien Trauung.
+          </p>
+          <ul class="service-expand-list">
+            <li>Paket Wedding Couple – Kennenlernen als Paar, Gelübde, Traurede</li>
+            <li>Paket Wedding Vow – nur das persönliche Gelübde</li>
+            <li>Traurede als Einzelleistung</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="service-card reveal" >
+      <!-- 02 Geburtstags- & Jubiläumsreden -->
+      <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <span class="service-number">02</span>
             <div class="service-line"></div>
-            <div class="service-name">Geburtstagsreden</div>
+            <div class="service-name">Geburtstags- & Jubiläumsreden</div>
             <p class="service-desc">Eine Rede, die den Menschen feiert — mit Wärme, Humor und dem Blick auf das, was wirklich zählt.</p>
           </div>
           <div class="service-card-back">
-            <div class="service-back-label">Orientierungspreis</div>
-            <div class="service-price">ab 500 €</div>
-            <div class="service-price-note">Runde Geburtstage · besondere Momente</div>
+            <div class="service-line" style="background:#7a4a30;"></div>
+            <div class="service-price-note" style="margin-bottom:16px;">Runde Geburtstage · Goldene Hochzeit · Danksagungen</div>
+            <button class="service-more-btn" onclick="toggleExpand(event,'expand-02')">Mehr erfahren <span class="more-arrow">↓</span></button>
+            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price" style="margin-bottom:16px;">ab 500 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
+        <div class="service-expand" id="expand-02">
+          <p class="service-expand-text">
+            Ob runder Geburtstag, goldene Hochzeit oder längst fälliger tiefer Dank —
+            es braucht eine Ansprache, die wertschätzend ist und von Herzen kommt.
+            Ich helfe dir, die richtigen Worte zu finden, und spreche die Rede auf Wunsch selbst.
+          </p>
+          <ul class="service-expand-list">
+            <li>Runde Geburtstage – 30, 40, 50, 60 …</li>
+            <li>Goldene Hochzeit & Ehejubiläen</li>
+            <li>Laudationes & Danksagungen</li>
+            <li>Firmen- und Vereinsjubiläen</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="service-card reveal" >
+      <!-- 03 Trauerreden -->
+      <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <span class="service-number">03</span>
             <div class="service-line"></div>
             <div class="service-name">Trauerreden</div>
             <p class="service-desc">Ein Abschied verdient mehr als allgemeine Worte. Ich höre zu und schreibe eine Rede, die diesen Menschen wirklich zeigt.</p>
           </div>
           <div class="service-card-back">
-            <div class="service-back-label">Orientierungspreis</div>
-            <div class="service-price">ab 560 €</div>
-            <div class="service-price-note">Inkl. persönlichem Gespräch & Feinschliff</div>
+            <div class="service-line" style="background:#7a4a30;"></div>
+            <div class="service-price-note" style="margin-bottom:16px;">Trauerrede · Nachruf · persönliche Würdigung</div>
+            <button class="service-more-btn" onclick="toggleExpand(event,'expand-03')">Mehr erfahren <span class="more-arrow">↓</span></button>
+            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price" style="margin-bottom:16px;">ab 560 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
+        <div class="service-expand" id="expand-03">
+          <p class="service-expand-text">
+            Worte reichen meist nicht aus, um zu erfassen, welche Lücke ein geliebter Mensch hinterlässt.
+            Und doch können sie etwas davon einfangen und Trost spenden. Ich höre gern zu
+            und helfe dabei, mit Worten zu ehren, wer gegangen ist.
+          </p>
+          <ul class="service-expand-list">
+            <li>Trauerrede – kirchlich oder weltlich</li>
+            <li>Nachruf & persönliche Würdigung</li>
+            <li>Vortrag auf Wunsch – damit ihr ganz dabei sein könnt</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="service-card reveal" >
+      <!-- 04 Business Poesie -->
+      <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <span class="service-number">04</span>
             <div class="service-line"></div>
-            <div class="service-name">Business-Poetik</div>
-            <p class="service-desc">Sprache, die Werte sichtbar macht — für Events, Jahresfeiern, Jubiläen oder Keynotes.</p>
+            <div class="service-name">Business Poesie</div>
+            <p class="service-desc">Sprache, die bewegt — als Einstimmung, als Abschluss oder als lebendiges Erlebnis mittendrin.</p>
           </div>
           <div class="service-card-back">
-            <div class="service-back-label">Orientierungspreis</div>
-            <div class="service-price">ab 1.000 €</div>
-            <div class="service-price-note">Events · Keynotes · Unternehmensjubiläen</div>
+            <div class="service-line" style="background:#7a4a30;"></div>
+            <div class="service-price-note" style="margin-bottom:16px;">Workshops · Tagungen · Retreats · Keynotes</div>
+            <button class="service-more-btn" onclick="toggleExpand(event,'expand-04')">Mehr erfahren <span class="more-arrow">↓</span></button>
+            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price" style="margin-bottom:16px;">ab 1.000 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
         </div>
+        <div class="service-expand" id="expand-04">
+          <p class="service-expand-text">
+            Sprache bewegt. Manchmal braucht es mehr als eine Präsentation,
+            um einen Moment unvergesslich zu machen.
+          </p>
+          <ul class="service-expand-list">
+            <li><strong>Live Poesie</strong> – ich begleite dein Event, nehme Stimmungen auf und trage am Ende einen frisch geschriebenen Text vor</li>
+            <li><strong>Eröffnungs-Keynote</strong> – eine poetische Einstimmung, die öffnet und den Ton setzt</li>
+            <li><strong>Closing Keynote</strong> – im Vorfeld führe ich Gespräche mit Veranstaltern und Mitarbeitenden, lasse mich briefen und inspirieren. Das Ergebnis: ein poetischer Abschluss mit Nachhall – ohne dass ich die Veranstaltung selbst begleitet haben muss</li>
+          </ul>
+          <p class="service-expand-text" style="font-size:15px; margin-top:16px;">
+            An- und Abreise, Kost und Logis werden vom Auftraggeber übernommen.
+          </p>
+        </div>
       </div>
 
-      <div class="service-card reveal" >
+      <!-- 05 Baby Blessings -->
+      <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <span class="service-number">05</span>
             <div class="service-line"></div>
-            <div class="service-name">Taufe & Konfirmation</div>
-            <p class="service-desc">Der Beginn eines Weges verdient Worte, die begleiten — feierlich, persönlich und nah am Herzen.</p>
+            <div class="service-name">Baby Blessings</div>
+            <p class="service-desc">Blessingway vor der Geburt oder Namensfest danach — Worte, die ein neues Leben willkommen heißen.</p>
           </div>
           <div class="service-card-back">
-            <div class="service-back-label">Orientierungspreis</div>
-            <div class="service-price">ab 440 €</div>
-            <div class="service-price-note">Taufansprache · Konfirmationsrede · Segensworte</div>
+            <div class="service-line" style="background:#7a4a30;"></div>
+            <div class="service-price-note" style="margin-bottom:16px;">Blessingway · Namensfest · Segensworte</div>
+            <button class="service-more-btn" onclick="toggleExpand(event,'expand-05')">Mehr erfahren <span class="more-arrow">↓</span></button>
+            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price" style="margin-bottom:16px;">ab 440 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+          </div>
+        </div>
+        <div class="service-expand" id="expand-05">
+          <div class="service-expand-tabs">
+            <button class="service-tab-btn active" onclick="switchTab(event,'tab-blessingway')">Blessingway</button>
+            <button class="service-tab-btn" onclick="switchTab(event,'tab-namensfest')">Namensfest</button>
+          </div>
+          <div class="service-tab-content active" id="tab-blessingway">
+            <p class="service-expand-text">
+              Bevor ein Kind auf die Welt kommt, verändert sich alles. Eine Frau wird zur Mutter —
+              und dieser Moment verdient mehr als Geschenke und Ratschläge. Der Blessingway ist
+              eine besondere Feier der Stärke, der Frau, der Verbindung.
+            </p>
+            <ul class="service-expand-list">
+              <li>Ein Gedicht zur Einstimmung</li>
+              <li>Einen Segensspruch für Mama und Baby</li>
+              <li>Einen Text zur Vorbereitung auf die Geburt</li>
+              <li>Angeleitetes Schreiben der Segenskarten</li>
+              <li>Ein adhoc geschriebenes Gedicht aus dem Erlebten</li>
+            </ul>
+          </div>
+          <div class="service-tab-content" id="tab-namensfest">
+            <p class="service-expand-text">
+              Ein Kind kommt in die Welt – und die Welt soll es willkommen heißen.
+              Das Namensfest ist eine Feier ohne religiöse Bindung, aber mit tiefer Bedeutung:
+              Der Name wird ausgesprochen, Menschen werden zu Wegbegleitern.
+            </p>
+            <ul class="service-expand-list">
+              <li>Ein Gedicht zur Einstimmung</li>
+              <li>Einen Segensspruch für Mama und Baby</li>
+              <li>Einen Text zur Feier des Kindes</li>
+              <li>Leitende Impulse fürs Schreiben der Segenskarten</li>
+              <li>Ein adhoc geschriebenes Gedicht aus dem Erlebten</li>
+            </ul>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+
+  <!-- CTA nach Angeboten -->
+  <div class="reveal" style="text-align: center; padding: 60px 60px 80px;">
+    <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" style="display: inline-block; padding: 18px 56px; border: 0.5px solid var(--ink); color: var(--ink); text-decoration: none; font-family: 'Cormorant SC', serif; font-size: 14px; letter-spacing: 5px; font-weight: 300; transition: background .3s, color .3s;">Jetzt anfragen</a>
+    <p style="margin-top: 16px; font-size: 15px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
+  </div>
+
 </div>
 
 <!-- ── PROZESS ── -->
@@ -1172,14 +1688,14 @@ footer {
       <div class="step-num">02</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
         <h3>Das Gespräch</h3>
-        <p>Wir sprechen über den Moment, den Menschen, das Gefühl, das du vermitteln möchtest.</p>
+        <p>Wir sprechen über den Anlass, die Menschen dahinter und das, was du vermitteln möchtest.</p>
       </div>
     </div>
 
     <div class="process-step reveal">
       <div class="step-content">
         <h3>Schreiben</h3>
-        <p>Ich webe deinen Text — sorgfältig, persönlich, mit Raum für das Unausgesprochene.</p>
+        <p>Ich finde den roten Faden und webe ihn in deinen Text – sorgfältig, persönlich, von dir inspiriert.</p>
       </div>
       <div class="step-num">03</div>
       <div class="step-empty"></div>
@@ -1190,14 +1706,14 @@ footer {
       <div class="step-num">04</div>
       <div class="step-content" style="text-align:left; padding: 0 40px;">
         <h3>Feinschliff</h3>
-        <p>Gemeinsam stimmen wir ab, bis jeder Satz genau das trägt, was er tragen soll.</p>
+        <p>Du gibst mir Feedback – ich verfeinere, bis der Text sitzt. Zwei Überarbeitungsrunden sind inklusive, weitere auf Anfrage.</p>
       </div>
     </div>
 
     <div class="process-step reveal">
       <div class="step-content">
-        <h3>Übergabe / Vortrag</h3>
-        <p>Du erhältst deinen fertigen Text — zum selbst Vortragen oder ich trage ihn für dich vor.</p>
+        <h3>Dein Moment</h3>
+        <p>Du erhältst deinen fertigen Text — zum selbst Vortragen oder ich spreche ihn für dich.</p>
       </div>
       <div class="step-num">05</div>
       <div class="step-empty"></div>
@@ -1212,7 +1728,7 @@ footer {
     <span class="section-label reveal">Schreib mir</span>
     <h2 class="section-title reveal">Deine Anfrage</h2>
     <p class="contact-intro reveal">
-      Erzähl mir kurz worum es geht —<br>ich antworte dir persönlich.
+      Erzähl mir kurz von deinem Anlass — ich melde mich persönlich bei dir.
     </p>
 
     <form class="contact-form reveal" name="anfrage" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
@@ -1234,10 +1750,10 @@ footer {
         <select name="anlass" required>
           <option value="" disabled selected>Worum geht es?</option>
           <option>Ehegelübde & Traureden</option>
-          <option>Geburtstagsreden</option>
+          <option>Geburtstagsreden & Jubiläen</option>
           <option>Trauerreden</option>
-          <option>Business-Poetik</option>
-          <option>Taufe / Konfirmation</option>
+          <option>Business Poesie</option>
+          <option>Baby Blessings</option>
           <option>Anderes</option>
         </select>
       </div>
@@ -1247,8 +1763,8 @@ footer {
         <textarea name="nachricht" placeholder="Zeig mir den roten Faden …" rows="5" required></textarea>
       </div>
 
-      <button type="submit" class="btn-submit">Anfrage senden</button>
-      <p class="form-next-step">und buche gleich dein kostenloses Erstgespräch.</p>
+      <button type="submit" class="btn-submit">Nachricht senden</button>
+      <p class="form-next-step">Das Erstgespräch ist kostenlos und unverbindlich.</p>
     </form>
   </div>
 </div>
@@ -1304,11 +1820,36 @@ footer {
 
 <footer>
   <span class="footer-name">Der rote Faden · die Wortweberei</span>
-  <span class="footer-red">by Carolina</span>
+  <span class="footer-red">Carolina J. Kitsche</span>
   <span class="footer-copy">© 2026</span>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// expand panels
+function toggleExpand(e, id) {
+  e.preventDefault();
+  e.stopPropagation();
+  const panel = document.getElementById(id);
+  const btn = e.currentTarget;
+  const isOpen = panel.classList.contains('open');
+  document.querySelectorAll('.service-expand').forEach(p => p.classList.remove('open'));
+  document.querySelectorAll('.service-more-btn').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    panel.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+// tab switching inside baby blessings
+function switchTab(e, tabId) {
+  e.stopPropagation();
+  const expand = e.currentTarget.closest('.service-expand');
+  expand.querySelectorAll('.service-tab-btn').forEach(b => b.classList.remove('active'));
+  expand.querySelectorAll('.service-tab-content').forEach(c => c.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
 // hamburger menu
 function toggleMenu() {
   const h = document.getElementById('hamburger');
