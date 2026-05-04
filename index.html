@@ -422,102 +422,99 @@ section {
   .cafe-satz-detail { flex-direction: column; gap: 4px; }
 }
 
-/* ── SERVICE INFO EXPAND ── */
-.service-expand {
-  display: none;
-  background: var(--cream);
-  border-top: 0.5px solid var(--border);
-  padding: 40px;
-  animation: fadeIn .4s ease;
-}
-.service-expand.open { display: block; }
-
+/* ── SERVICE EXPAND CONTENT (in card back) ── */
 .service-expand-text {
-  font-size: 17px;
-  color: var(--mid);
+  font-size: 15px;
+  color: #4a2e1e;
   font-style: italic;
-  line-height: 1.9;
-  margin-bottom: 16px;
+  line-height: 1.85;
+  margin-bottom: 10px;
 }
 .service-expand-list {
-  font-size: 16px;
-  color: var(--mid);
+  font-size: 14px;
+  color: #4a2e1e;
   font-style: italic;
-  line-height: 2;
+  line-height: 1.9;
   padding-left: 0;
   list-style: none;
+  margin-bottom: 10px;
 }
 .service-expand-list li::before {
   content: '·';
-  color: var(--red);
+  color: #7a4a30;
   margin-right: 10px;
 }
-
-.service-expand-tabs {
-  display: flex;
-  gap: 0;
-  margin-bottom: 32px;
-  border-bottom: 0.5px solid var(--border);
+.service-expand-content {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
 }
-.service-tab-btn {
+.service-card.card-expanded .service-expand-content {
+  max-height: 600px;
+  opacity: 1;
+  transition: max-height 0.7s ease 0.25s, opacity 0.5s ease 0.35s;
+  margin-bottom: 8px;
+}
+
+/* ── CARD BACKDROP ── */
+#card-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 18, 8, 0.52);
+  z-index: 450;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+#card-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ── CARD CLOSE BUTTON ── */
+.card-close-btn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 26px;
+  height: 26px;
+  border: 0.5px solid #7a4a30;
+  border-radius: 50%;
   background: none;
-  border: none;
-  padding: 12px 24px;
-  font-family: 'Cormorant SC', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: var(--light);
-  cursor: none;
-  border-bottom: 1.5px solid transparent;
-  margin-bottom: -0.5px;
-  transition: color .2s, border-color .2s;
+  color: #7a4a30;
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background 0.2s;
+  font-family: 'Cormorant Garamond', serif;
+  z-index: 10;
   font-weight: 300;
 }
-.service-tab-btn.active {
-  color: var(--red);
-  border-bottom-color: var(--red);
+.card-close-btn:hover {
+  background: rgba(122, 74, 48, 0.18);
 }
-.service-tab-content { display: none; }
-.service-tab-content.active { display: block; }
-
-.service-more-btn {
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #4a1e10;
-  background: rgba(74, 30, 16, 0.08);
-  border: 0.5px solid rgba(74, 30, 16, 0.3);
-  cursor: none;
-  font-family: 'Cormorant SC', serif;
-  padding: 10px 20px;
-  margin-top: 8px;
-  display: inline-block;
-  transition: background .2s, color .2s;
-  font-weight: 300;
-  width: 100%;
-  text-align: left;
-}
-.service-more-btn:hover { background: rgba(74, 30, 16, 0.16); }
-.service-more-btn .more-arrow {
-  display: inline-block;
-  transition: transform .3s;
-  margin-left: 6px;
-  float: right;
-}
-.service-more-btn.open .more-arrow { transform: rotate(180deg); }
-
-@media (max-width: 768px) {
-  .service-expand { padding: 24px; }
-  .service-tab-btn { padding: 10px 16px; font-size: 11px; cursor: auto; }
-  .service-more-btn { cursor: auto; }
+.service-card.card-expanded .card-close-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s ease 0.5s, background 0.2s;
 }
 
 /* ── CATCHPHRASE ── */
 .catchphrase-section {
-  max-width: 860px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 60px 80px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 160px;
+  overflow: visible;
 }
 .catchphrase-text {
   font-family: 'Cormorant Garamond', serif;
@@ -526,10 +523,24 @@ section {
   color: var(--ink);
   line-height: 1.6;
   font-weight: 300;
+  flex-shrink: 0;
 }
 .catchphrase-text em {
   color: var(--red);
   font-style: italic;
+}
+.catchphrase-image {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  padding: 40px;
+  margin: -40px;
+}
+.catchphrase-image img {
+  width: min(300px, 35vw);
+  display: block;
+  opacity: 0.88;
 }
 
 /* ── DREI SEKTIONEN ── */
@@ -562,7 +573,8 @@ section {
 }
 
 @media (max-width: 768px) {
-  .catchphrase-section { padding: 0 24px 60px; }
+  .catchphrase-section { padding: 0 24px 60px; flex-direction: column; gap: 32px; align-items: center; }
+  .catchphrase-image img { width: min(220px, 70vw); }
   .about-pillars { grid-template-columns: 1fr; padding: 0 24px 60px; gap: 40px; }
 }
 
@@ -615,6 +627,7 @@ section {
   background: var(--cream);
   display: flex;
   flex-direction: column;
+  outline: none;
 }
 
 .service-card-inner {
@@ -623,6 +636,7 @@ section {
   height: 340px;
   transform-style: preserve-3d;
   transition: transform 1.4s cubic-bezier(0.0, 0.0, 0.2, 1);
+  background: var(--cream);
 }
 
 .service-card.flipped .service-card-inner {
@@ -650,6 +664,8 @@ section {
   justify-content: flex-start;
   align-items: flex-start;
   padding: 32px 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .service-number {
@@ -1219,14 +1235,16 @@ footer {
   .services-grid { grid-template-columns: 1fr; gap: 2px; }
   .service-card:nth-child(n) { grid-column: auto; }
   .service-card { height: auto; perspective: none; }
-  .service-card-inner { transform-style: flat; transition: none; }
+  .service-card-inner { transform-style: flat; transition: none; height: auto; }
   .service-card.flipped .service-card-inner { transform: none; }
   .service-card-front { position: relative; padding: 32px 28px; }
-  .service-card-back { position: relative; transform: none; display: none; padding: 32px 28px; }
+  .service-card-back { position: relative; transform: none; display: none; padding: 32px 28px; overflow: visible; }
   .service-card.flipped .service-card-front { display: none; }
   .service-card.flipped .service-card-back { display: flex; }
   .service-name { font-size: 22px; }
   .service-desc { font-size: 16px; }
+  .service-expand-content { max-height: none; opacity: 1; transition: none; margin-bottom: 8px; }
+  .card-close-btn { display: none; }
 
   .process-section { padding: 60px 24px; text-align: left; }
   .process-steps::before { display: none; }
@@ -1264,6 +1282,9 @@ footer {
 </style>
 </head>
 <body>
+
+<!-- card expansion backdrop -->
+<div id="card-backdrop"></div>
 
 <!-- thread cursor canvas -->
 <canvas id="thread-canvas"></canvas>
@@ -1340,6 +1361,9 @@ footer {
       Das Abgründige, das Liebevolle —<br>
       <em>und die Gleichzeitigkeit von allem.</em>
     </p>
+    <div class="catchphrase-image">
+      <img src="writing.png" alt="Schreiben">
+    </div>
   </div>
 
   <!-- Persönliche Geschichte -->
@@ -1358,7 +1382,7 @@ footer {
       <p>
         Seitdem folge ich dieser Inspiration – und fasse Menschen, Geschichten und Momente in Worte.
       </p>
-      <p style="font-size: clamp(15px, 1.1vw, 17px); color: var(--light); font-style: italic; line-height: 1.8; margin-top: 32px; border-top: 0.5px solid var(--border); padding-top: 24px;">
+      <p style="font-size: clamp(17px, 1.3vw, 20px); color: var(--light); font-style: italic; line-height: 1.8; margin-top: 32px; border-top: 0.5px solid var(--border); padding-top: 24px;">
         Der rote Faden – in der griechischen Mythologie Rettung aus dem Labyrinth,
         in der chinesischen und japanischen Tradition das unsichtbare Band zwischen zwei Menschen,
         bei Goethe das Unverwechselbare einer Geschichte.
@@ -1367,7 +1391,7 @@ footer {
       </p>
     </div>
     <div class="about-visual reveal">
-      <img src="uber_mich.png" alt="Carolina J. Kitsche" style="width: min(320px, 80vw); display: block;">
+      <img src="uber_mich.png" alt="Carolina J. Kitsche" style="width: min(440px, 80vw); display: block;">
     </div>
   </div>
 
@@ -1400,26 +1424,22 @@ footer {
             <p class="service-desc">Das Versprechen eines Lebens verdient die richtigen Worte — persönlich, ehrlich und unvergesslich.</p>
           </div>
           <div class="service-card-back">
+            <button class="card-close-btn" onclick="closeCard(event)">×</button>
             <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:16px;">Ehegelübde · Traurede · freie Trauung</div>
-            <button class="service-more-btn" onclick="toggleExpand(event,'expand-01')">Mehr erfahren <span class="more-arrow">↓</span></button>
-            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price-note" style="margin-bottom:12px;">Ehegelübde · Traurede · freie Trauung</div>
+            <div class="service-expand-content">
+              <p class="service-expand-text">Kennenlernen als Paar: eure Geschichte, eure Eigenheiten, eure Zukunftswünsche. Anschließend je ein Einzelgespräch für die persönlichen Gelübde. Auf Wunsch halte ich die Rede bei eurer freien Trauung.</p>
+              <ul class="service-expand-list">
+                <li>Paket Wedding Couple – Kennenlernen als Paar, Gelübde, Traurede</li>
+                <li>Paket Wedding Vow – nur das persönliche Gelübde</li>
+                <li>Traurede als Einzelleistung</li>
+              </ul>
+            </div>
+            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
             <div class="service-price" style="margin-bottom:16px;">ab 700 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
-        </div>
-        <div class="service-expand" id="expand-01">
-          <p class="service-expand-text">
-            Kennenlernen als Paar: eure Geschichte, eure Eigenheiten, eure Zukunftswünsche.
-            Anschließend je ein Einzelgespräch für die persönlichen Gelübde.
-            Auf Wunsch halte ich die Rede bei eurer freien Trauung.
-          </p>
-          <ul class="service-expand-list">
-            <li>Paket Wedding Couple – Kennenlernen als Paar, Gelübde, Traurede</li>
-            <li>Paket Wedding Vow – nur das persönliche Gelübde</li>
-            <li>Traurede als Einzelleistung</li>
-          </ul>
         </div>
       </div>
 
@@ -1432,27 +1452,23 @@ footer {
             <p class="service-desc">Eine Rede, die den Menschen feiert — mit Wärme, Humor und dem Blick auf das, was wirklich zählt.</p>
           </div>
           <div class="service-card-back">
+            <button class="card-close-btn" onclick="closeCard(event)">×</button>
             <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:16px;">Runde Geburtstage · Goldene Hochzeit · Danksagungen</div>
-            <button class="service-more-btn" onclick="toggleExpand(event,'expand-02')">Mehr erfahren <span class="more-arrow">↓</span></button>
-            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price-note" style="margin-bottom:12px;">Runde Geburtstage · Goldene Hochzeit · Danksagungen</div>
+            <div class="service-expand-content">
+              <p class="service-expand-text">Ob runder Geburtstag, goldene Hochzeit oder längst fälliger tiefer Dank — es braucht eine Ansprache, die wertschätzend ist und von Herzen kommt. Ich helfe dir, die richtigen Worte zu finden, und spreche die Rede auf Wunsch selbst.</p>
+              <ul class="service-expand-list">
+                <li>Runde Geburtstage – 30, 40, 50, 60 …</li>
+                <li>Goldene Hochzeit & Ehejubiläen</li>
+                <li>Laudationes & Danksagungen</li>
+                <li>Firmen- und Vereinsjubiläen</li>
+              </ul>
+            </div>
+            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
             <div class="service-price" style="margin-bottom:16px;">ab 500 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
-        </div>
-        <div class="service-expand" id="expand-02">
-          <p class="service-expand-text">
-            Ob runder Geburtstag, goldene Hochzeit oder längst fälliger tiefer Dank —
-            es braucht eine Ansprache, die wertschätzend ist und von Herzen kommt.
-            Ich helfe dir, die richtigen Worte zu finden, und spreche die Rede auf Wunsch selbst.
-          </p>
-          <ul class="service-expand-list">
-            <li>Runde Geburtstage – 30, 40, 50, 60 …</li>
-            <li>Goldene Hochzeit & Ehejubiläen</li>
-            <li>Laudationes & Danksagungen</li>
-            <li>Firmen- und Vereinsjubiläen</li>
-          </ul>
         </div>
       </div>
 
@@ -1465,26 +1481,22 @@ footer {
             <p class="service-desc">Ein Abschied verdient mehr als allgemeine Worte. Ich höre zu und schreibe eine Rede, die diesen Menschen wirklich zeigt.</p>
           </div>
           <div class="service-card-back">
+            <button class="card-close-btn" onclick="closeCard(event)">×</button>
             <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:16px;">Trauerrede · Nachruf · persönliche Würdigung</div>
-            <button class="service-more-btn" onclick="toggleExpand(event,'expand-03')">Mehr erfahren <span class="more-arrow">↓</span></button>
-            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price-note" style="margin-bottom:12px;">Trauerrede · Nachruf · persönliche Würdigung</div>
+            <div class="service-expand-content">
+              <p class="service-expand-text">Worte reichen meist nicht aus, um zu erfassen, welche Lücke ein geliebter Mensch hinterlässt. Und doch können sie etwas davon einfangen und Trost spenden. Ich höre gern zu und helfe dabei, mit Worten zu ehren, wer gegangen ist.</p>
+              <ul class="service-expand-list">
+                <li>Trauerrede – kirchlich oder weltlich</li>
+                <li>Nachruf & persönliche Würdigung</li>
+                <li>Vortrag auf Wunsch – damit ihr ganz dabei sein könnt</li>
+              </ul>
+            </div>
+            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
             <div class="service-price" style="margin-bottom:16px;">ab 560 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
-        </div>
-        <div class="service-expand" id="expand-03">
-          <p class="service-expand-text">
-            Worte reichen meist nicht aus, um zu erfassen, welche Lücke ein geliebter Mensch hinterlässt.
-            Und doch können sie etwas davon einfangen und Trost spenden. Ich höre gern zu
-            und helfe dabei, mit Worten zu ehren, wer gegangen ist.
-          </p>
-          <ul class="service-expand-list">
-            <li>Trauerrede – kirchlich oder weltlich</li>
-            <li>Nachruf & persönliche Würdigung</li>
-            <li>Vortrag auf Wunsch – damit ihr ganz dabei sein könnt</li>
-          </ul>
         </div>
       </div>
 
@@ -1497,28 +1509,23 @@ footer {
             <p class="service-desc">Sprache, die bewegt — als Einstimmung, als Abschluss oder als lebendiges Erlebnis mittendrin.</p>
           </div>
           <div class="service-card-back">
+            <button class="card-close-btn" onclick="closeCard(event)">×</button>
             <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:16px;">Workshops · Tagungen · Retreats · Keynotes</div>
-            <button class="service-more-btn" onclick="toggleExpand(event,'expand-04')">Mehr erfahren <span class="more-arrow">↓</span></button>
-            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price-note" style="margin-bottom:12px;">Workshops · Tagungen · Retreats · Keynotes</div>
+            <div class="service-expand-content">
+              <p class="service-expand-text">Sprache bewegt. Manchmal braucht es mehr als eine Präsentation, um einen Moment unvergesslich zu machen.</p>
+              <ul class="service-expand-list">
+                <li><strong>Live Poesie</strong> – ich begleite dein Event, nehme Stimmungen auf und trage am Ende einen frisch geschriebenen Text vor</li>
+                <li><strong>Eröffnungs-Keynote</strong> – eine poetische Einstimmung, die öffnet und den Ton setzt</li>
+                <li><strong>Closing Keynote</strong> – poetischer Abschluss mit Nachhall, aus Gesprächen mit Veranstaltern und Mitarbeitenden entstanden</li>
+              </ul>
+              <p class="service-expand-text" style="font-size:13px; margin-top:6px;">An- und Abreise, Kost und Logis werden vom Auftraggeber übernommen.</p>
+            </div>
+            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
             <div class="service-price" style="margin-bottom:16px;">ab 1.000 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
           </div>
-        </div>
-        <div class="service-expand" id="expand-04">
-          <p class="service-expand-text">
-            Sprache bewegt. Manchmal braucht es mehr als eine Präsentation,
-            um einen Moment unvergesslich zu machen.
-          </p>
-          <ul class="service-expand-list">
-            <li><strong>Live Poesie</strong> – ich begleite dein Event, nehme Stimmungen auf und trage am Ende einen frisch geschriebenen Text vor</li>
-            <li><strong>Eröffnungs-Keynote</strong> – eine poetische Einstimmung, die öffnet und den Ton setzt</li>
-            <li><strong>Closing Keynote</strong> – im Vorfeld führe ich Gespräche mit Veranstaltern und Mitarbeitenden, lasse mich briefen und inspirieren. Das Ergebnis: ein poetischer Abschluss mit Nachhall – ohne dass ich die Veranstaltung selbst begleitet haben muss</li>
-          </ul>
-          <p class="service-expand-text" style="font-size:15px; margin-top:16px;">
-            An- und Abreise, Kost und Logis werden vom Auftraggeber übernommen.
-          </p>
         </div>
       </div>
 
@@ -1531,47 +1538,28 @@ footer {
             <p class="service-desc">Blessingway vor der Geburt oder Namensfest danach — Worte, die ein neues Leben willkommen heißen.</p>
           </div>
           <div class="service-card-back">
+            <button class="card-close-btn" onclick="closeCard(event)">×</button>
             <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:16px;">Blessingway · Namensfest · Segensworte</div>
-            <button class="service-more-btn" onclick="toggleExpand(event,'expand-05')">Mehr erfahren <span class="more-arrow">↓</span></button>
-            <div class="service-back-label" style="margin-top:20px;">Orientierungspreis</div>
+            <div class="service-price-note" style="margin-bottom:12px;">Blessingway · Namensfest · Segensworte</div>
+            <div class="service-expand-content">
+              <p class="service-expand-text" style="margin-bottom:4px;"><em>Blessingway —</em> Bevor ein Kind auf die Welt kommt, verändert sich alles. Eine Frau wird zur Mutter, und dieser Moment verdient mehr als Geschenke und Ratschläge.</p>
+              <ul class="service-expand-list" style="margin-bottom:10px;">
+                <li>Gedicht zur Einstimmung · Segensspruch für Mama und Baby</li>
+                <li>Text zur Vorbereitung auf die Geburt</li>
+                <li>Angeleitetes Schreiben der Segenskarten</li>
+                <li>Adhoc-Gedicht aus dem Erlebten</li>
+              </ul>
+              <p class="service-expand-text" style="margin-bottom:4px;"><em>Namensfest —</em> Ein Kind kommt in die Welt, und die Welt soll es willkommen heißen. Eine Feier ohne religiöse Bindung, aber mit tiefer Bedeutung.</p>
+              <ul class="service-expand-list">
+                <li>Gedicht zur Einstimmung · Segensspruch</li>
+                <li>Text zur Feier des Kindes</li>
+                <li>Leitende Impulse fürs Schreiben der Segenskarten</li>
+              </ul>
+            </div>
+            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
             <div class="service-price" style="margin-bottom:16px;">ab 440 €</div>
             <div class="service-back-line"></div>
             <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
-          </div>
-        </div>
-        <div class="service-expand" id="expand-05">
-          <div class="service-expand-tabs">
-            <button class="service-tab-btn active" onclick="switchTab(event,'tab-blessingway')">Blessingway</button>
-            <button class="service-tab-btn" onclick="switchTab(event,'tab-namensfest')">Namensfest</button>
-          </div>
-          <div class="service-tab-content active" id="tab-blessingway">
-            <p class="service-expand-text">
-              Bevor ein Kind auf die Welt kommt, verändert sich alles. Eine Frau wird zur Mutter —
-              und dieser Moment verdient mehr als Geschenke und Ratschläge. Der Blessingway ist
-              eine besondere Feier der Stärke, der Frau, der Verbindung.
-            </p>
-            <ul class="service-expand-list">
-              <li>Ein Gedicht zur Einstimmung</li>
-              <li>Einen Segensspruch für Mama und Baby</li>
-              <li>Einen Text zur Vorbereitung auf die Geburt</li>
-              <li>Angeleitetes Schreiben der Segenskarten</li>
-              <li>Ein adhoc geschriebenes Gedicht aus dem Erlebten</li>
-            </ul>
-          </div>
-          <div class="service-tab-content" id="tab-namensfest">
-            <p class="service-expand-text">
-              Ein Kind kommt in die Welt – und die Welt soll es willkommen heißen.
-              Das Namensfest ist eine Feier ohne religiöse Bindung, aber mit tiefer Bedeutung:
-              Der Name wird ausgesprochen, Menschen werden zu Wegbegleitern.
-            </p>
-            <ul class="service-expand-list">
-              <li>Ein Gedicht zur Einstimmung</li>
-              <li>Einen Segensspruch für Mama und Baby</li>
-              <li>Einen Text zur Feier des Kindes</li>
-              <li>Leitende Impulse fürs Schreiben der Segenskarten</li>
-              <li>Ein adhoc geschriebenes Gedicht aus dem Erlebten</li>
-            </ul>
           </div>
         </div>
       </div>
@@ -1833,30 +1821,120 @@ footer {
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// expand panels
-function toggleExpand(e, id) {
-  e.preventDefault();
-  e.stopPropagation();
-  const panel = document.getElementById(id);
-  const btn = e.currentTarget;
-  const isOpen = panel.classList.contains('open');
-  document.querySelectorAll('.service-expand').forEach(p => p.classList.remove('open'));
-  document.querySelectorAll('.service-more-btn').forEach(b => b.classList.remove('open'));
-  if (!isOpen) {
-    panel.classList.add('open');
-    btn.classList.add('open');
+// ── CARD FLIP + EXPAND ──
+let activeCard = null;
+let cardPlaceholder = null;
+const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
+
+function openCard(card) {
+  if (activeCard) return;
+
+  // Mobile: simple flat flip, show all content immediately
+  if (isMobileView()) {
+    const wasFlipped = card.classList.contains('flipped');
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('flipped', 'card-expanded'));
+    if (!wasFlipped) card.classList.add('flipped', 'card-expanded');
+    return;
   }
+
+  const rect = card.getBoundingClientRect();
+  const inner = card.querySelector('.service-card-inner');
+
+  // Insert placeholder to hold grid space — copy grid-column so other cards don't shift
+  const ph = document.createElement('div');
+  const cs = window.getComputedStyle(card);
+  ph.style.cssText = `grid-column:${cs.gridColumn};grid-row:${cs.gridRow};height:${rect.height}px;visibility:hidden;`;
+  card.before(ph);
+  cardPlaceholder = ph;
+
+  // Save original inline styles
+  card.dataset.origStyle = card.getAttribute('style') || '';
+  inner.dataset.origStyle = inner.getAttribute('style') || '';
+
+  // Pin card at current viewport position (no transition yet)
+  card.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;margin:0;z-index:500;transition:none;`;
+  inner.style.height = rect.height + 'px';
+  inner.style.transition = 'none';
+
+  // Lock scroll
+  document.body.style.overflow = 'hidden';
+
+  // Reflow to ensure starting state is painted before we transition
+  card.offsetHeight;
+
+  // Target: centered, larger card
+  const tw = Math.min(700, window.innerWidth * 0.9);
+  const th = Math.min(580, window.innerHeight * 0.84);
+  const tl = Math.round((window.innerWidth - tw) / 2);
+  const tt = Math.round((window.innerHeight - th) / 2);
+  const ease = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+
+  // Trigger expansion + flip — small delay lets browser commit initial fixed position
+  setTimeout(() => {
+    card.style.transition = `left .8s ${ease}, top .8s ${ease}, width .8s ${ease}, height .8s ${ease}`;
+    inner.style.transition = `transform 1.2s cubic-bezier(0.0,0.0,0.2,1), height .8s ${ease}`;
+    card.style.left   = tl + 'px';
+    card.style.top    = tt + 'px';
+    card.style.width  = tw + 'px';
+    card.style.height = th + 'px';
+    inner.style.height = th + 'px';
+    card.classList.add('flipped');
+  }, 30);
+
+  // Fade in expand content once card is mostly open
+  setTimeout(() => card.classList.add('card-expanded'), 560);
+
+  document.getElementById('card-backdrop').classList.add('visible');
+  activeCard = card;
 }
 
-// tab switching inside baby blessings
-function switchTab(e, tabId) {
-  e.stopPropagation();
-  const expand = e.currentTarget.closest('.service-expand');
-  expand.querySelectorAll('.service-tab-btn').forEach(b => b.classList.remove('active'));
-  expand.querySelectorAll('.service-tab-content').forEach(c => c.classList.remove('active'));
-  e.currentTarget.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
+function closeCard(e) {
+  if (e) { e.preventDefault(); e.stopPropagation(); }
+  if (!activeCard) return;
+
+  const card = activeCard;
+  const inner = card.querySelector('.service-card-inner');
+
+  // Hide expand content first
+  card.classList.remove('card-expanded');
+  document.getElementById('card-backdrop').classList.remove('visible');
+
+  const phRect = cardPlaceholder.getBoundingClientRect();
+  const ease = 'cubic-bezier(0.55, 0.05, 0.67, 0.19)';
+
+  card.style.transition = `left .7s ${ease}, top .7s ${ease}, width .7s ${ease}, height .7s ${ease}`;
+  inner.style.transition = `transform 1.0s cubic-bezier(0.0,0.0,0.2,1), height .7s ${ease}`;
+
+  card.classList.remove('flipped');
+  card.style.left   = phRect.left + 'px';
+  card.style.top    = phRect.top  + 'px';
+  card.style.width  = phRect.width + 'px';
+  card.style.height = phRect.height + 'px';
+  inner.style.height = phRect.height + 'px';
+
+  // After animation: restore everything
+  setTimeout(() => {
+    card.setAttribute('style', card.dataset.origStyle);
+    inner.setAttribute('style', inner.dataset.origStyle);
+    delete card.dataset.origStyle;
+    delete inner.dataset.origStyle;
+    cardPlaceholder.remove();
+    document.body.style.overflow = '';
+    activeCard = null;
+    cardPlaceholder = null;
+  }, 1050);
 }
+
+document.getElementById('card-backdrop').addEventListener('click', () => closeCard());
+
+document.querySelectorAll('.services-grid .service-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.service-back-cta')) return;
+    if (e.target.closest('.card-close-btn')) return;
+    if (activeCard && activeCard !== this) return;
+    if (!activeCard) openCard(this);
+  });
+});
 
 // hamburger menu
 function toggleMenu() {
@@ -1987,18 +2065,24 @@ const reveals = document.querySelectorAll('.reveal');
 function smoothScrollToContact(e) {
   e.preventDefault();
   e.stopPropagation();
-  document.querySelectorAll('.service-card').forEach(c => c.classList.remove('flipped'));
-  document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (activeCard) {
+    const card = activeCard;
+    const inner = card.querySelector('.service-card-inner');
+    card.classList.remove('flipped', 'card-expanded');
+    card.setAttribute('style', card.dataset.origStyle || '');
+    inner.setAttribute('style', inner.dataset.origStyle || '');
+    delete card.dataset.origStyle;
+    delete inner.dataset.origStyle;
+    if (cardPlaceholder) cardPlaceholder.remove();
+    document.getElementById('card-backdrop').classList.remove('visible');
+    document.body.style.overflow = '';
+    activeCard = null;
+    cardPlaceholder = null;
+  }
+  setTimeout(() => {
+    document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
 }
-document.querySelectorAll('.services-grid .service-card').forEach((el) => {
-  el.addEventListener('click', function(e) {
-    // don't flip if clicking the "Anfrage stellen" link
-    if (e.target.closest('.service-back-cta')) return;
-    const wasFlipped = this.classList.contains('flipped');
-    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('flipped'));
-    if (!wasFlipped) this.classList.add('flipped');
-  });
-});
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
