@@ -308,8 +308,11 @@ section {
   gap: 32px;
 }
 .orbit-heading {
-  text-align: center;
+  align-self: flex-start;
+  text-align: left;
   flex-shrink: 0;
+  position: relative;
+  z-index: 10;
 }
 .orbit-heading .thin-rule {
   margin: 14px auto 0;
@@ -1844,8 +1847,9 @@ footer {
   <div class="testimonials-sticky">
 
     <div class="orbit-heading">
-      <span class="section-label">Stimmen</span>
-      <div class="thin-rule"></div>
+      <span class="section-label">Was andere sagen</span>
+      <h2 class="section-title">Stimmen</h2>
+      <div class="thin-rule" style="margin: 0;"></div>
     </div>
 
     <div class="orbit-stage">
@@ -2469,9 +2473,9 @@ reveals.forEach(el => {
 
   const RADIUS    = 295;
   const BASE_DEG  = [-45, 45, 135, 225];
-  const FRICTION  = 0.988;  // how slowly it decays (high = long tail)
-  const MIN_SPIN  = 0.003;  // residual drift — never fully stops
-  const SCROLL_K  = 0.006;  // scroll-px → degrees per frame
+  const FRICTION  = 0.991;  // how slowly it decays (high = long tail)
+  const MIN_SPIN  = 0.002;  // residual drift — never fully stops
+  const SCROLL_K  = 0.0004; // scroll-px → degrees per frame
 
   let angle    = 0;
   let velocity = 0;
