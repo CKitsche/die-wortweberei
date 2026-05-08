@@ -49,6 +49,7 @@ body {
   font-weight: 300;
   line-height: 1.7;
   cursor: default;
+  overflow-x: hidden;
 }
 
 /* ── CUSTOM CURSOR ── */
@@ -135,7 +136,7 @@ nav.scrolled {
   text-align: center;
   padding: 120px 40px 80px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-logo {
@@ -151,7 +152,7 @@ nav.scrolled {
   color: var(--mid);
   letter-spacing: 1.5px;
   max-width: 480px;
-  margin: 0 auto 140px;
+  margin: 0 auto 240px;
   animation: fadeUp .9s ease 1.2s both;
   line-height: 1.7;
 }
@@ -258,6 +259,14 @@ section {
   justify-content: center;
 }
 
+.about-visual img {
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.55);
+}
+
 .about-ornament {
   width: 280px;
   height: 280px;
@@ -283,54 +292,99 @@ section {
   opacity: .7;
 }
 
-/* ── TESTIMONIALS ── */
-.testimonials-section {
+/* ── TESTIMONIALS ORBIT ── */
+.testimonials-scroll {
   background: var(--cream);
-  padding: 100px 40px;
   border-bottom: 0.5px solid var(--border);
+  padding: 100px 40px 120px;
+  overflow: hidden;
 }
-.testimonials-inner {
+.testimonials-sticky {
   max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
 }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  margin-top: 48px;
+.orbit-heading {
+  text-align: center;
+  flex-shrink: 0;
+}
+.orbit-heading .thin-rule {
+  margin: 14px auto 0;
+}
+.orbit-stage {
+  position: relative;
+  width: min(880px, 94vw);
+  height: min(860px, 88vh);
+  flex-shrink: 0;
+}
+.orbit-hub {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px; height: 200px;
+  z-index: 2;
+}
+.orbit-hub img {
+  width: 200px; height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+.orbit-item {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 185px;
+  z-index: 1;
 }
 .testimonial {
   border-top: 0.5px solid var(--red);
-  padding-top: 32px;
+  padding-top: 18px;
 }
 .testimonial-quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 64px;
+  font-size: 52px;
   color: var(--red);
   line-height: 0.6;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   opacity: 0.4;
   font-weight: 300;
 }
 .testimonial-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(17px, 1.3vw, 20px);
+  font-size: 14px;
   font-style: italic;
   color: var(--mid);
-  line-height: 1.9;
-  margin-bottom: 24px;
+  line-height: 1.8;
+  margin-bottom: 14px;
   font-weight: 300;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .testimonial-name {
   font-family: 'Cormorant SC', serif;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 3px;
   color: var(--light);
   font-weight: 300;
 }
 @media (max-width: 768px) {
-  .testimonials-section { padding: 60px 24px; }
-  .testimonials-grid { grid-template-columns: 1fr; gap: 40px; }
+  .testimonials-scroll { padding: 60px 24px 80px; }
+  .testimonials-sticky { gap: 24px; }
+  .orbit-stage { width: 100%; height: auto; display: flex; flex-direction: column; align-items: center; }
+  .orbit-hub { position: static; transform: none; width: 160px; height: 160px; margin: 0 auto 32px; }
+  .orbit-hub img { width: 160px; height: 160px; }
+  .orbit-item { position: static; transform: none !important; width: 100%; max-width: 500px; margin-bottom: 32px; }
+  .testimonial-text { -webkit-line-clamp: unset; font-size: 17px; }
 }
 
 /* ── CAFÉ SATZ ── */
@@ -424,25 +478,26 @@ section {
 
 /* ── SERVICE EXPAND CONTENT (in card back) ── */
 .service-expand-text {
-  font-size: 15px;
+  font-size: 17px;
   color: #4a2e1e;
   font-style: italic;
   line-height: 1.85;
   margin-bottom: 10px;
 }
 .service-expand-list {
-  font-size: 14px;
+  font-size: 16px;
   color: #4a2e1e;
   font-style: italic;
   line-height: 1.9;
   padding-left: 0;
   list-style: none;
   margin-bottom: 10px;
+  text-align: center;
 }
 .service-expand-list li::before {
   content: '·';
   color: #7a4a30;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .service-expand-content {
   overflow: hidden;
@@ -451,10 +506,22 @@ section {
   transition: max-height 0.5s ease, opacity 0.4s ease;
 }
 .service-card.card-expanded .service-expand-content {
-  max-height: 600px;
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
   opacity: 1;
   transition: max-height 0.7s ease 0.25s, opacity 0.5s ease 0.35s;
   margin-bottom: 8px;
+}
+.service-expand-content::-webkit-scrollbar {
+  width: 3px;
+}
+.service-expand-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.service-expand-content::-webkit-scrollbar-thumb {
+  background: rgba(122, 74, 48, 0.5);
+  border-radius: 2px;
 }
 
 /* ── CARD BACKDROP ── */
@@ -539,8 +606,16 @@ section {
 }
 .catchphrase-image img {
   width: min(300px, 35vw);
+  height: min(300px, 35vw);
+  object-fit: cover;
+  border-radius: 50%;
   display: block;
   opacity: 0.88;
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.55);
 }
 
 /* ── DREI SEKTIONEN ── */
@@ -624,7 +699,7 @@ section {
 /* ── FLIP CARD ── */
 .service-card {
   cursor: none;
-  background: var(--cream);
+  background: transparent;
   display: flex;
   flex-direction: column;
   outline: none;
@@ -633,10 +708,10 @@ section {
 .service-card-inner {
   position: relative;
   width: 100%;
-  height: 340px;
+  height: 420px;
   transform-style: preserve-3d;
   transition: transform 1.4s cubic-bezier(0.0, 0.0, 0.2, 1);
-  background: var(--cream);
+  background: transparent;
 }
 
 .service-card.flipped .service-card-inner {
@@ -662,7 +737,8 @@ section {
   transform: rotateY(180deg);
   background: #c9987f;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   padding: 32px 40px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -670,6 +746,24 @@ section {
 
 .service-number {
   display: none;
+}
+
+.card-pictogram {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 24px;
+  opacity: 0.85;
+  border: none;
+  border-radius: 50%;
+}
+
+.card-pictogram--back {
+  width: 150px;
+  height: 150px;
+  margin-top: 4px;
+  margin-bottom: 20px;
 }
 
 .service-name {
@@ -698,13 +792,12 @@ section {
 
 /* Back side */
 .service-back-label {
-  font-size: 13px;
+  font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #7a4a30;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   font-weight: 300;
-  margin-top: 12px;
 }
 
 .service-price {
@@ -718,18 +811,29 @@ section {
 }
 
 .service-price-note {
-  font-size: 16px;
+  font-size: 18px;
   color: #4a2e1e;
   font-style: italic;
   margin-bottom: 12px;
   line-height: 1.6;
 }
 
+.service-back-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 0.5px solid rgba(122, 74, 48, 0.35);
+  gap: 24px;
+}
+
 .service-back-line {
-  width: 32px;
+  width: 40px;
   height: 0.5px;
   background: #7a4a30;
-  margin-bottom: 12px;
+  margin: 0 auto 12px;
   opacity: .6;
 }
 
@@ -742,6 +846,7 @@ section {
   font-weight: 300;
   transition: opacity .2s;
   display: inline-block;
+  flex-shrink: 0;
 }
 .service-back-cta:hover { opacity: .7; }
 
@@ -1279,6 +1384,141 @@ footer {
 
   section { padding: 60px 24px; }
 }
+
+/* ── FOTO RAHMEN (zwei dünne Linien) ── */
+.foto-rahmen {
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+  display: block;
+}
+
+/* ── HERO BRIDGE IMAGE ── */
+.hero-bridge-wrap {
+  position: absolute;
+  left: 2%;
+  bottom: 0;
+  z-index: 1;
+  animation: fadeIn 1.2s ease 2s both;
+}
+.hero-bridge-wrap img {
+  width: min(300px, 30vw);
+  display: block;
+  opacity: 0.92;
+}
+
+/* ── PHOTO BRIDGE (links, zwischen Angebote & Stimmen) ── */
+.photo-bridge-section {
+  background: var(--cream);
+  padding: 0 40px 60px;
+}
+.photo-bridge-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.photo-bridge-section img {
+  width: min(300px, 30vw);
+  height: min(300px, 30vw);
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  opacity: 0.9;
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+
+/* ── CAFÉ SATZ 2-COLUMN ── */
+.cafe-satz-inner {
+  max-width: 1000px;
+}
+.cafe-satz-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 80px;
+  align-items: start;
+}
+.cafe-satz-photo {
+}
+.cafe-satz-photo img {
+  width: 100%;
+  display: block;
+  box-shadow:
+    0 0 0 5px var(--ivory),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--ivory),
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+
+/* ── PROCESS SIDE PHOTOS ── */
+.process-section {
+  max-width: 1200px;
+  padding: 120px 40px;
+}
+.process-outer {
+  display: grid;
+  grid-template-columns: 280px 1fr 280px;
+  gap: 40px;
+  align-items: start;
+  margin-top: 64px;
+}
+.process-outer .process-steps {
+  margin-top: 0;
+}
+.process-col-left {
+  padding-top: 280px;
+  display: flex;
+  justify-content: flex-end;
+}
+.process-col-right {
+  padding-top: 840px;
+}
+.process-side-photo {
+  width: 100%;
+  display: block;
+  box-shadow:
+    0 0 0 5px var(--cream),
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px var(--cream),
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+
+/* ── KONTAKT SMILING FOTO ── */
+.contact-section {
+  position: relative;
+}
+.contact-smiling {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: min(260px, 22vw);
+}
+.contact-smiling img {
+  width: 100%;
+  display: block;
+  box-shadow:
+    0 0 0 5px #c9987f,
+    0 0 0 5.5px var(--red-soft),
+    0 0 0 9px #c9987f,
+    0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+
+@media (max-width: 768px) {
+  .hero-bridge-wrap { display: none; }
+  .photo-bridge-section { padding: 40px 24px; }
+  .photo-bridge-section img { width: min(200px, 60vw); height: min(200px, 60vw); }
+  .cafe-satz-inner { max-width: 100%; }
+  .cafe-satz-layout { grid-template-columns: 1fr; gap: 40px; }
+  .cafe-satz-photo { position: static; margin-top: 0; }
+  .process-outer { grid-template-columns: 1fr; }
+  .process-col-left, .process-col-right { display: none; }
+  .contact-smiling { display: none; }
+  .contact-section { padding-bottom: 60px; }
+}
 </style>
 </head>
 <body>
@@ -1313,11 +1553,15 @@ footer {
 
 <!-- ── HERO ── -->
 <section class="hero" id="hero">
-  <img src="Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei Carolina J. Kitsche" class="hero-logo">
+  <img src="logos/Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei Carolina J. Kitsche" class="hero-logo">
   <p class="hero-tagline">
     Worte, die bleiben.<br>
     Für Momente, die verbinden.
   </p>
+  <!-- Bridge image: links, verbindet Logo und Entdecken -->
+  <div class="hero-bridge-wrap">
+    <img src="fotos/caro_writing_3_e.png" alt="Carolina schreibend" class="foto-rahmen" data-parallax="0.13">
+  </div>
   <div class="hero-scroll">
     <span>Entdecken</span>
     <div class="scroll-line"></div>
@@ -1325,7 +1569,7 @@ footer {
 </section>
 
 <!-- ── ÜBER CAROLINA ── -->
-<div id="ueber" style="padding-top: 80px;">
+<div id="ueber" style="padding-top: 140px;">
 
   <!-- Drei Spalten zuerst -->
   <div class="about-pillars" style="padding-top: 0;">
@@ -1356,14 +1600,11 @@ footer {
   </div>
 
   <!-- Catchphrase -->
-  <div class="catchphrase-section reveal">
-    <p class="catchphrase-text">
+  <div class="catchphrase-section reveal" style="justify-content: center;">
+    <p class="catchphrase-text" style="text-align: center;">
       Das Abgründige, das Liebevolle —<br>
       <em>und die Gleichzeitigkeit von allem.</em>
     </p>
-    <div class="catchphrase-image">
-      <img src="writing.png" alt="Schreiben">
-    </div>
   </div>
 
   <!-- Persönliche Geschichte -->
@@ -1391,7 +1632,7 @@ footer {
       </p>
     </div>
     <div class="about-visual reveal">
-      <img src="uber_mich.png" alt="Carolina J. Kitsche" style="width: min(440px, 80vw); display: block;">
+      <img src="fotos/uber_mich.png" alt="Carolina J. Kitsche" style="width: min(440px, 80vw); display: block;" data-parallax="0.08">
     </div>
   </div>
 
@@ -1419,14 +1660,16 @@ footer {
       <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-line"></div>
+            <img src="piktogramme/Hochzeit_Piktogramm_clear.png" alt="" class="card-pictogram">
             <div class="service-name">Ehegelübde & Traureden</div>
+            <div class="service-line"></div>
             <p class="service-desc">Das Versprechen eines Lebens verdient die richtigen Worte — persönlich, ehrlich und unvergesslich.</p>
           </div>
           <div class="service-card-back">
             <button class="card-close-btn" onclick="closeCard(event)">×</button>
-            <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:12px;">Ehegelübde · Traurede · freie Trauung</div>
+            <img src="piktogramme/Hochzeit_Piktogramm_clear.png" alt="" class="card-pictogram card-pictogram--back">
+            <div class="service-price-note">Ehegelübde · Traurede · freie Trauung</div>
+            <div class="service-back-line"></div>
             <div class="service-expand-content">
               <p class="service-expand-text">Kennenlernen als Paar: eure Geschichte, eure Eigenheiten, eure Zukunftswünsche. Anschließend je ein Einzelgespräch für die persönlichen Gelübde. Auf Wunsch halte ich die Rede bei eurer freien Trauung.</p>
               <ul class="service-expand-list">
@@ -1435,10 +1678,13 @@ footer {
                 <li>Traurede als Einzelleistung</li>
               </ul>
             </div>
-            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
-            <div class="service-price" style="margin-bottom:16px;">ab 700 €</div>
-            <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            <div class="service-back-footer">
+              <div>
+                <div class="service-back-label">Orientierungspreis</div>
+                <div class="service-price">ab 700 €</div>
+              </div>
+              <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1447,14 +1693,16 @@ footer {
       <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-line"></div>
+            <img src="piktogramme/Geburtstag_Piktogramm_clear.png" alt="" class="card-pictogram">
             <div class="service-name">Geburtstags- & Jubiläumsreden</div>
+            <div class="service-line"></div>
             <p class="service-desc">Eine Rede, die den Menschen feiert — mit Wärme, Humor und dem Blick auf das, was wirklich zählt.</p>
           </div>
           <div class="service-card-back">
             <button class="card-close-btn" onclick="closeCard(event)">×</button>
-            <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:12px;">Runde Geburtstage · Goldene Hochzeit · Danksagungen</div>
+            <img src="piktogramme/Geburtstag_Piktogramm_clear.png" alt="" class="card-pictogram card-pictogram--back">
+            <div class="service-price-note">Runde Geburtstage · Goldene Hochzeit · Danksagungen</div>
+            <div class="service-back-line"></div>
             <div class="service-expand-content">
               <p class="service-expand-text">Ob runder Geburtstag, goldene Hochzeit oder längst fälliger tiefer Dank — es braucht eine Ansprache, die wertschätzend ist und von Herzen kommt. Ich helfe dir, die richtigen Worte zu finden, und spreche die Rede auf Wunsch selbst.</p>
               <ul class="service-expand-list">
@@ -1464,10 +1712,13 @@ footer {
                 <li>Firmen- und Vereinsjubiläen</li>
               </ul>
             </div>
-            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
-            <div class="service-price" style="margin-bottom:16px;">ab 500 €</div>
-            <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            <div class="service-back-footer">
+              <div>
+                <div class="service-back-label">Orientierungspreis</div>
+                <div class="service-price">ab 500 €</div>
+              </div>
+              <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1476,14 +1727,16 @@ footer {
       <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-line"></div>
+            <img src="piktogramme/Trauer_Piktogramm_clear.png" alt="" class="card-pictogram">
             <div class="service-name">Trauerreden</div>
+            <div class="service-line"></div>
             <p class="service-desc">Ein Abschied verdient mehr als allgemeine Worte. Ich höre zu und schreibe eine Rede, die diesen Menschen wirklich zeigt.</p>
           </div>
           <div class="service-card-back">
             <button class="card-close-btn" onclick="closeCard(event)">×</button>
-            <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:12px;">Trauerrede · Nachruf · persönliche Würdigung</div>
+            <img src="piktogramme/Trauer_Piktogramm_clear.png" alt="" class="card-pictogram card-pictogram--back">
+            <div class="service-price-note">Trauerrede · Nachruf · persönliche Würdigung</div>
+            <div class="service-back-line"></div>
             <div class="service-expand-content">
               <p class="service-expand-text">Worte reichen meist nicht aus, um zu erfassen, welche Lücke ein geliebter Mensch hinterlässt. Und doch können sie etwas davon einfangen und Trost spenden. Ich höre gern zu und helfe dabei, mit Worten zu ehren, wer gegangen ist.</p>
               <ul class="service-expand-list">
@@ -1492,10 +1745,13 @@ footer {
                 <li>Vortrag auf Wunsch – damit ihr ganz dabei sein könnt</li>
               </ul>
             </div>
-            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
-            <div class="service-price" style="margin-bottom:16px;">ab 560 €</div>
-            <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            <div class="service-back-footer">
+              <div>
+                <div class="service-back-label">Orientierungspreis</div>
+                <div class="service-price">ab 560 €</div>
+              </div>
+              <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1504,14 +1760,14 @@ footer {
       <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-line"></div>
             <div class="service-name">Business Poesie</div>
+            <div class="service-line"></div>
             <p class="service-desc">Sprache, die bewegt — als Einstimmung, als Abschluss oder als lebendiges Erlebnis mittendrin.</p>
           </div>
           <div class="service-card-back">
             <button class="card-close-btn" onclick="closeCard(event)">×</button>
-            <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:12px;">Workshops · Tagungen · Retreats · Keynotes</div>
+            <div class="service-price-note">Workshops · Tagungen · Retreats · Keynotes</div>
+            <div class="service-back-line"></div>
             <div class="service-expand-content">
               <p class="service-expand-text">Sprache bewegt. Manchmal braucht es mehr als eine Präsentation, um einen Moment unvergesslich zu machen.</p>
               <ul class="service-expand-list">
@@ -1521,10 +1777,13 @@ footer {
               </ul>
               <p class="service-expand-text" style="font-size:13px; margin-top:6px;">An- und Abreise, Kost und Logis werden vom Auftraggeber übernommen.</p>
             </div>
-            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
-            <div class="service-price" style="margin-bottom:16px;">ab 1.000 €</div>
-            <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            <div class="service-back-footer">
+              <div>
+                <div class="service-back-label">Orientierungspreis</div>
+                <div class="service-price">ab 1.000 €</div>
+              </div>
+              <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1533,14 +1792,16 @@ footer {
       <div class="service-card reveal">
         <div class="service-card-inner">
           <div class="service-card-front">
-            <div class="service-line"></div>
+            <img src="piktogramme/Baby_Piktogramm_clear.png" alt="" class="card-pictogram">
             <div class="service-name">Baby Blessings</div>
+            <div class="service-line"></div>
             <p class="service-desc">Blessingway vor der Geburt oder Namensfest danach — Worte, die ein neues Leben willkommen heißen.</p>
           </div>
           <div class="service-card-back">
             <button class="card-close-btn" onclick="closeCard(event)">×</button>
-            <div class="service-line" style="background:#7a4a30;"></div>
-            <div class="service-price-note" style="margin-bottom:12px;">Blessingway · Namensfest · Segensworte</div>
+            <img src="piktogramme/Baby_Piktogramm_clear.png" alt="" class="card-pictogram card-pictogram--back">
+            <div class="service-price-note">Blessingway · Namensfest · Segensworte</div>
+            <div class="service-back-line"></div>
             <div class="service-expand-content">
               <p class="service-expand-text" style="margin-bottom:4px;"><em>Blessingway —</em> Bevor ein Kind auf die Welt kommt, verändert sich alles. Eine Frau wird zur Mutter, und dieser Moment verdient mehr als Geschenke und Ratschläge.</p>
               <ul class="service-expand-list" style="margin-bottom:10px;">
@@ -1556,10 +1817,13 @@ footer {
                 <li>Leitende Impulse fürs Schreiben der Segenskarten</li>
               </ul>
             </div>
-            <div class="service-back-label" style="margin-top:12px;">Orientierungspreis</div>
-            <div class="service-price" style="margin-bottom:16px;">ab 440 €</div>
-            <div class="service-back-line"></div>
-            <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            <div class="service-back-footer">
+              <div>
+                <div class="service-back-label">Orientierungspreis</div>
+                <div class="service-price">ab 440 €</div>
+              </div>
+              <a href="#kontakt" class="service-back-cta" onclick="smoothScrollToContact(event)">Anfrage stellen →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1576,27 +1840,50 @@ footer {
 </div>
 
 <!-- ── TESTIMONIALS ── -->
-<div class="testimonials-section">
-  <div class="testimonials-inner">
-    <span class="section-label reveal">Stimmen</span>
-    <div class="testimonials-grid">
+<div class="testimonials-scroll">
+  <div class="testimonials-sticky">
 
-      <div class="testimonial reveal">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Endlich fühle ich mich wirklich gesehen und verstanden. Deine Worte schenken mir so viel Selbstvertrauen. Du hast mich zutiefst berührt – sogar zu Tränen gerührt. Und auch deine Stimme, mit der du den Text vorliest, macht alles noch intensiver. Dieser wunderschöne Text ist für mich zu einem echten Schatz geworden.</p>
-        <span class="testimonial-name">— Dilan</span>
+    <div class="orbit-heading">
+      <span class="section-label">Stimmen</span>
+      <div class="thin-rule"></div>
+    </div>
+
+    <div class="orbit-stage">
+
+      <div class="orbit-hub">
+        <img src="fotos/writing.png" alt="Schreiben">
       </div>
 
-      <div class="testimonial reveal">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Caro, it's so beautiful. I loved meeting you, and our time together. You are a special and gifted listener and artist. Thank you again for the beautiful words!</p>
-        <span class="testimonial-name">— Jane</span>
+      <div class="orbit-item" data-orbit-idx="0">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Endlich fühle ich mich wirklich gesehen und verstanden. Deine Worte schenken mir so viel Selbstvertrauen. Du hast mich zutiefst berührt – sogar zu Tränen gerührt. Und auch deine Stimme, mit der du den Text vorliest, macht alles noch intensiver. Dieser wunderschöne Text ist für mich zu einem echten Schatz geworden.</p>
+          <span class="testimonial-name">— Dilan</span>
+        </div>
       </div>
 
-      <div class="testimonial reveal">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">In einer so schweren und emotionalen Zeit hast du mit deiner warmen, liebevollen Art genau die richtigen Worte gefunden. Du hast unsere Gefühle und Erinnerungen so treffend in Worte gefasst und mir damit geholfen, einen würdevollen und tröstlichen Abschied zu finden. Danke für deine Herzlichkeit, dein Mitgefühl und deine besondere Gabe, Menschen in solchen Momenten Kraft zu schenken.</p>
-        <span class="testimonial-name">— Thea</span>
+      <div class="orbit-item" data-orbit-idx="1">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Caro, it's so beautiful. I loved meeting you, and our time together. You are a special and gifted listener and artist. Thank you again for the beautiful words!</p>
+          <span class="testimonial-name">— Jane</span>
+        </div>
+      </div>
+
+      <div class="orbit-item" data-orbit-idx="2">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Ich hatte kaum Worte für das, was ich sagen wollte – und du hast genau die richtigen gefunden. Als wäre es mein eigener Satz, nur viel schöner.</p>
+          <span class="testimonial-name">— Sina</span>
+        </div>
+      </div>
+
+      <div class="orbit-item" data-orbit-idx="3">
+        <div class="testimonial">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">In einer so schweren und emotionalen Zeit hast du mit deiner warmen, liebevollen Art genau die richtigen Worte gefunden. Du hast unsere Gefühle und Erinnerungen so treffend in Worte gefasst und mir damit geholfen, einen würdevollen und tröstlichen Abschied zu finden. Danke für deine Herzlichkeit, dein Mitgefühl und deine besondere Gabe, Menschen in solchen Momenten Kraft zu schenken.</p>
+          <span class="testimonial-name">— Thea</span>
+        </div>
       </div>
 
     </div>
@@ -1609,51 +1896,65 @@ footer {
   <h2 class="section-title reveal">Die Fäden zusammenführen</h2>
   <div class="thin-rule reveal" style="margin: 0 auto 0;"></div>
 
-  <div class="process-steps">
+  <div class="process-outer">
 
-    <div class="process-step reveal">
-      <div class="step-content">
-        <h3>Anfrage & Erstgespräch</h3>
-        <p>Du schreibst mir kurz worum es geht — dann treffen wir uns per Videocall, unverbindlich und kostenlos.</p>
-      </div>
-      <div class="step-num">01</div>
-      <div class="step-empty"></div>
+    <!-- Foto links – unabhängig von der Kette -->
+    <div class="process-col-left reveal">
+      <img src="fotos/caro_writing_4.jpg" alt="Carolina im Gespräch" class="process-side-photo" data-parallax="0.07">
     </div>
 
-    <div class="process-step reveal">
-      <div class="step-empty"></div>
-      <div class="step-num">02</div>
-      <div class="step-content" style="text-align:left; padding: 0 40px;">
-        <h3>Das Gespräch</h3>
-        <p>Wir sprechen über den Anlass, die Menschen dahinter und das, was du vermitteln möchtest.</p>
+    <div class="process-steps">
+
+      <div class="process-step reveal">
+        <div class="step-content">
+          <h3>Anfrage & Erstgespräch</h3>
+          <p>Du schreibst mir kurz worum es geht — dann treffen wir uns per Videocall, unverbindlich und kostenlos.</p>
+        </div>
+        <div class="step-num">01</div>
+        <div class="step-empty"></div>
       </div>
+
+      <div class="process-step reveal">
+        <div class="step-empty"></div>
+        <div class="step-num">02</div>
+        <div class="step-content" style="text-align:left; padding: 0 40px;">
+          <h3>Das Gespräch</h3>
+          <p>Wir sprechen über den Anlass, die Menschen dahinter und das, was du vermitteln möchtest.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-content">
+          <h3>Schreiben</h3>
+          <p>Ich finde den roten Faden und webe ihn in deinen Text – sorgfältig, persönlich, von dir inspiriert.</p>
+        </div>
+        <div class="step-num">03</div>
+        <div class="step-empty"></div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-empty"></div>
+        <div class="step-num">04</div>
+        <div class="step-content" style="text-align:left; padding: 0 40px;">
+          <h3>Feinschliff</h3>
+          <p>Ich übergebe den ersten Entwurf – du gibst mir Rückmeldung, ich verfeinere den Text. Zwei Runden sind inklusive, weitere auf Anfrage.</p>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-content">
+          <h3>Dein Moment</h3>
+          <p>Du erhältst deinen fertigen Text — zum selbst Vortragen oder ich spreche ihn für dich.</p>
+        </div>
+        <div class="step-num">05</div>
+        <div class="step-empty"></div>
+      </div>
+
     </div>
 
-    <div class="process-step reveal">
-      <div class="step-content">
-        <h3>Schreiben</h3>
-        <p>Ich finde den roten Faden und webe ihn in deinen Text – sorgfältig, persönlich, von dir inspiriert.</p>
-      </div>
-      <div class="step-num">03</div>
-      <div class="step-empty"></div>
-    </div>
-
-    <div class="process-step reveal">
-      <div class="step-empty"></div>
-      <div class="step-num">04</div>
-      <div class="step-content" style="text-align:left; padding: 0 40px;">
-        <h3>Feinschliff</h3>
-        <p>Ich übergebe den ersten Entwurf – du gibst mir Rückmeldung, ich verfeinere den Text. Zwei Runden sind inklusive, weitere auf Anfrage.</p>
-      </div>
-    </div>
-
-    <div class="process-step reveal">
-      <div class="step-content">
-        <h3>Dein Moment</h3>
-        <p>Du erhältst deinen fertigen Text — zum selbst Vortragen oder ich spreche ihn für dich.</p>
-      </div>
-      <div class="step-num">05</div>
-      <div class="step-empty"></div>
+    <!-- Foto rechts – unabhängig von der Kette -->
+    <div class="process-col-right reveal">
+      <img src="fotos/caro-speaking.jpg" alt="Carolina beim Vortragen" class="process-side-photo" data-parallax="0.05">
     </div>
 
   </div>
@@ -1670,51 +1971,60 @@ footer {
       <div style="width:48px; height:0.5px; background:var(--red); margin:20px auto 0;"></div>
     </div>
 
-    <span class="section-label" style="color:var(--light); font-size:16px; letter-spacing:5px;">Ein besonderes Angebot</span>
-    <h2 class="section-title" style="color:var(--ink);">Café Satz</h2>
-    <div class="thin-rule" style="margin: 0 0 40px;"></div>
+    <div class="cafe-satz-layout">
+      <div>
+        <span class="section-label" style="color:var(--light); font-size:16px; letter-spacing:5px;">Ein besonderes Angebot</span>
+        <h2 class="section-title" style="color:var(--ink);">Café Satz</h2>
+        <div class="thin-rule" style="margin: 0 0 40px;"></div>
 
-    <p class="cafe-satz-lead">
-      Eine Tasse Kaffee. Ein Gespräch. Dein literarisches Souvenir.
-    </p>
+        <p class="cafe-satz-lead">
+          Eine Tasse Kaffee. Ein Gespräch. Dein literarisches Souvenir.
+        </p>
 
-    <p class="cafe-satz-text">
-      Café Satz ist eine Einladung: Wir treffen uns in einem Café unserer Wahl,
-      sprechen eine Stunde über Gott und die Welt – und innerhalb einer Woche erhältst du
-      einen Text, der nur aus diesem einen Gespräch entstanden ist.
-      Persönlich, überraschend, unwiederholbar.
-    </p>
+        <p class="cafe-satz-text">
+          Café Satz ist eine Einladung: Wir treffen uns in einem Café unserer Wahl,
+          sprechen eine Stunde über Gott und die Welt – und innerhalb einer Woche erhältst du
+          einen Text, der nur aus diesem einen Gespräch entstanden ist.
+          Persönlich, überraschend, unwiederholbar.
+        </p>
 
-    <div class="cafe-satz-origin">
-      <p>
-        Diese Geschichte beginnt mit meiner Oma. Sie kochte ihren Mokka in einem
-        blumenverzierten Emailkännchen und las Kaffeesatz – für uns, für sich, für alle,
-        die wissen wollten, was sich darin verbarg. Ihre Deutungen waren so frei und
-        fantasievoll wie die Bilder, die sich ihr offenbarten.
-        So begann meine Liebe zum <em>Kaffeesatz</em> – und zur Sprache.
-      </p>
+        <div class="cafe-satz-origin">
+          <p>
+            Diese Geschichte beginnt mit meiner Oma. Sie kochte ihren Mokka in einem
+            blumenverzierten Emailkännchen und las Kaffeesatz – für uns, für sich, für alle,
+            die wissen wollten, was sich darin verbarg. Ihre Deutungen waren so frei und
+            fantasievoll wie die Bilder, die sich ihr offenbarten.
+            So begann meine Liebe zum <em>Kaffeesatz</em> – und zur Sprache.
+          </p>
+        </div>
+
+        <div class="cafe-satz-details">
+          <div class="cafe-satz-detail">
+            <span class="cafe-satz-detail-label">Wo</span>
+            <span class="cafe-satz-detail-text">Hamburg & Umland · auf Wunsch auch per Videocall</span>
+          </div>
+          <div class="cafe-satz-detail">
+            <span class="cafe-satz-detail-label">Dauer</span>
+            <span class="cafe-satz-detail-text">Eine Stunde Gespräch · Text innerhalb einer Woche</span>
+          </div>
+          <div class="cafe-satz-detail">
+            <span class="cafe-satz-detail-label">Preis</span>
+            <span class="cafe-satz-detail-text">Du zahlst, was es dir wert ist – nach Erhalt des Textes.</span>
+          </div>
+          <div class="cafe-satz-detail">
+            <span class="cafe-satz-detail-label">Instagram</span>
+            <span class="cafe-satz-detail-text"><a href="https://www.instagram.com/caros.cafe.satz" target="_blank" style="color: var(--mid); text-decoration: none; border-bottom: 0.5px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s;" onmouseover="this.style.color='var(--red)'; this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--mid)'; this.style.borderColor='var(--border)'">@caros.cafe.satz</a></span>
+          </div>
+        </div>
+
+        <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" class="cafe-satz-cta">Lass dich überraschen →</a>
+      </div>
+
+      <div class="cafe-satz-photo">
+        <img src="fotos/caro-listening.jpg" alt="Carolina beim Zuhören" data-parallax="0.07">
+      </div>
     </div>
 
-    <div class="cafe-satz-details">
-      <div class="cafe-satz-detail">
-        <span class="cafe-satz-detail-label">Wo</span>
-        <span class="cafe-satz-detail-text">Hamburg & Umland · auf Wunsch auch per Videocall</span>
-      </div>
-      <div class="cafe-satz-detail">
-        <span class="cafe-satz-detail-label">Dauer</span>
-        <span class="cafe-satz-detail-text">Eine Stunde Gespräch · Text innerhalb einer Woche</span>
-      </div>
-      <div class="cafe-satz-detail">
-        <span class="cafe-satz-detail-label">Preis</span>
-        <span class="cafe-satz-detail-text">Du zahlst, was es dir wert ist – nach Erhalt des Textes.</span>
-      </div>
-      <div class="cafe-satz-detail">
-        <span class="cafe-satz-detail-label">Instagram</span>
-        <span class="cafe-satz-detail-text"><a href="https://www.instagram.com/caros.cafe.satz" target="_blank" style="color: var(--mid); text-decoration: none; border-bottom: 0.5px solid var(--border); padding-bottom: 2px; transition: color .2s, border-color .2s;" onmouseover="this.style.color='var(--red)'; this.style.borderColor='var(--red)'" onmouseout="this.style.color='var(--mid)'; this.style.borderColor='var(--border)'">@caros.cafe.satz</a></span>
-      </div>
-    </div>
-
-    <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" class="cafe-satz-cta">Lass dich überraschen →</a>
   </div>
 </div>
 
@@ -1840,51 +2150,57 @@ function openCard(card) {
   const rect = card.getBoundingClientRect();
   const inner = card.querySelector('.service-card-inner');
 
-  // Insert placeholder to hold grid space — copy grid-column so other cards don't shift
+  // 1. Insert a placeholder that holds the exact grid slot (with the card's computed position)
+  //    so other cards never move or reflow.
   const ph = document.createElement('div');
   const cs = window.getComputedStyle(card);
   ph.style.cssText = `grid-column:${cs.gridColumn};grid-row:${cs.gridRow};height:${rect.height}px;visibility:hidden;`;
   card.before(ph);
   cardPlaceholder = ph;
 
-  // Save original inline styles
+  // 2. Move the card OUTSIDE the grid into <body> so it no longer affects
+  //    nth-child counting on sibling cards.
+  document.body.appendChild(card);
+
+  // Save original styles for restoration
   card.dataset.origStyle = card.getAttribute('style') || '';
   inner.dataset.origStyle = inner.getAttribute('style') || '';
 
-  // Pin card at current viewport position (no transition yet)
-  card.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;margin:0;z-index:500;transition:none;`;
+  // 3. Pin card at its original viewport position (no transition yet)
+  card.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;margin:0;z-index:500;`;
   inner.style.height = rect.height + 'px';
   inner.style.transition = 'none';
+  card.offsetHeight; // force paint commit
 
-  // Lock scroll
   document.body.style.overflow = 'hidden';
+  document.getElementById('card-backdrop').classList.add('visible');
 
-  // Reflow to ensure starting state is painted before we transition
-  card.offsetHeight;
-
-  // Target: centered, larger card
   const tw = Math.min(700, window.innerWidth * 0.9);
   const th = Math.min(580, window.innerHeight * 0.84);
   const tl = Math.round((window.innerWidth - tw) / 2);
   const tt = Math.round((window.innerHeight - th) / 2);
   const ease = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 
-  // Trigger expansion + flip — small delay lets browser commit initial fixed position
+  // Phase 1: flip at original size
   setTimeout(() => {
-    card.style.transition = `left .8s ${ease}, top .8s ${ease}, width .8s ${ease}, height .8s ${ease}`;
-    inner.style.transition = `transform 1.2s cubic-bezier(0.0,0.0,0.2,1), height .8s ${ease}`;
+    inner.style.transition = `transform 0.9s cubic-bezier(0.0, 0.0, 0.2, 1)`;
+    card.classList.add('flipped');
+  }, 20);
+
+  // Phase 2: expand to center (after flip)
+  setTimeout(() => {
+    inner.style.transition = `height 0.75s ${ease}`;
+    card.style.transition = `left 0.75s ${ease}, top 0.75s ${ease}, width 0.75s ${ease}, height 0.75s ${ease}`;
     card.style.left   = tl + 'px';
     card.style.top    = tt + 'px';
     card.style.width  = tw + 'px';
     card.style.height = th + 'px';
     inner.style.height = th + 'px';
-    card.classList.add('flipped');
-  }, 30);
+  }, 940);
 
-  // Fade in expand content once card is mostly open
-  setTimeout(() => card.classList.add('card-expanded'), 560);
+  // Phase 3: reveal expanded text
+  setTimeout(() => card.classList.add('card-expanded'), 1500);
 
-  document.getElementById('card-backdrop').classList.add('visible');
   activeCard = card;
 }
 
@@ -1894,26 +2210,31 @@ function closeCard(e) {
 
   const card = activeCard;
   const inner = card.querySelector('.service-card-inner');
+  const ease = 'cubic-bezier(0.55, 0.05, 0.67, 0.19)';
 
-  // Hide expand content first
   card.classList.remove('card-expanded');
   document.getElementById('card-backdrop').classList.remove('visible');
 
   const phRect = cardPlaceholder.getBoundingClientRect();
-  const ease = 'cubic-bezier(0.55, 0.05, 0.67, 0.19)';
 
-  card.style.transition = `left .7s ${ease}, top .7s ${ease}, width .7s ${ease}, height .7s ${ease}`;
-  inner.style.transition = `transform 1.0s cubic-bezier(0.0,0.0,0.2,1), height .7s ${ease}`;
-
-  card.classList.remove('flipped');
+  // Phase 1: shrink back to placeholder position/size
+  card.style.transition = `left 0.65s ${ease}, top 0.65s ${ease}, width 0.65s ${ease}, height 0.65s ${ease}`;
+  inner.style.transition = `height 0.65s ${ease}`;
   card.style.left   = phRect.left + 'px';
   card.style.top    = phRect.top  + 'px';
   card.style.width  = phRect.width + 'px';
   card.style.height = phRect.height + 'px';
   inner.style.height = phRect.height + 'px';
 
-  // After animation: restore everything
+  // Phase 2: unflip
   setTimeout(() => {
+    inner.style.transition = `transform 0.75s cubic-bezier(0.0, 0.0, 0.2, 1)`;
+    card.classList.remove('flipped');
+  }, 680);
+
+  // Phase 3: move card back into grid and restore everything
+  setTimeout(() => {
+    cardPlaceholder.before(card);         // return to original grid slot
     card.setAttribute('style', card.dataset.origStyle);
     inner.setAttribute('style', inner.dataset.origStyle);
     delete card.dataset.origStyle;
@@ -1922,7 +2243,7 @@ function closeCard(e) {
     document.body.style.overflow = '';
     activeCard = null;
     cardPlaceholder = null;
-  }, 1050);
+  }, 1480);
 }
 
 document.getElementById('card-backdrop').addEventListener('click', () => closeCard());
@@ -2069,6 +2390,7 @@ function smoothScrollToContact(e) {
     const card = activeCard;
     const inner = card.querySelector('.service-card-inner');
     card.classList.remove('flipped', 'card-expanded');
+    if (cardPlaceholder) cardPlaceholder.before(card); // return to grid
     card.setAttribute('style', card.dataset.origStyle || '');
     inner.setAttribute('style', inner.dataset.origStyle || '');
     delete card.dataset.origStyle;
@@ -2105,6 +2427,91 @@ reveals.forEach(el => {
 });
 
 // form submit — Netlify handles redirect to success.html
+
+// ── PARALLAX (viewport-relativ) ──
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const els = document.querySelectorAll('[data-parallax]');
+  if (!els.length) return;
+
+  const state = [];
+
+  // Natürliche Mittelpunkte einmalig vor jeder Transform messen
+  window.addEventListener('load', function () {
+    els.forEach(el => {
+      el.style.willChange = 'transform';
+      const rect = el.getBoundingClientRect();
+      const naturalCenter = window.scrollY + rect.top + rect.height / 2;
+      state.push({ el, current: 0, naturalCenter, speed: parseFloat(el.dataset.parallax) || 0.08 });
+    });
+    tick();
+  });
+
+  function tick() {
+    const vc = window.scrollY + window.innerHeight / 2;
+    state.forEach(s => {
+      const dist = vc - s.naturalCenter;
+      const target = dist * s.speed;
+      s.current += (target - s.current) * 0.06;
+      s.el.style.transform = 'translateY(' + s.current.toFixed(2) + 'px)';
+    });
+    requestAnimationFrame(tick);
+  }
+})();
+
+// ── ORBIT ANIMATION (scroll-velocity + inertia) ──
+(function () {
+  const items = document.querySelectorAll('.orbit-item');
+  if (!items.length) return;
+  if (window.matchMedia('(hover: none)').matches) return;
+
+  const RADIUS    = 295;
+  const BASE_DEG  = [-45, 45, 135, 225];
+  const FRICTION  = 0.988;  // how slowly it decays (high = long tail)
+  const MIN_SPIN  = 0.003;  // residual drift — never fully stops
+  const SCROLL_K  = 0.006;  // scroll-px → degrees per frame
+
+  let angle    = 0;
+  let velocity = 0;
+  let lastY    = window.scrollY;
+  let lastT    = performance.now();
+
+  window.addEventListener('scroll', function () {
+    var now   = performance.now();
+    var delta = window.scrollY - lastY;
+    var dt    = Math.max(1, now - lastT);
+    velocity += (delta / dt) * SCROLL_K * 16; // normalise to ~60fps frame
+    lastY = window.scrollY;
+    lastT = now;
+  }, { passive: true });
+
+  function place () {
+    if (window.innerWidth <= 768) {
+      items.forEach(function (item) { item.style.transform = ''; });
+      requestAnimationFrame(place);
+      return;
+    }
+
+    velocity *= FRICTION;
+    // keep a tiny constant drift so it never fully stops
+    var spin = velocity + (velocity >= 0 ? MIN_SPIN : -MIN_SPIN);
+    angle += spin;
+
+    items.forEach(function (item, i) {
+      var rad = (BASE_DEG[i] + angle) * Math.PI / 180;
+      var x   = Math.cos(rad) * RADIUS;
+      var y   = Math.sin(rad) * RADIUS;
+      item.style.transform =
+        'translate(calc(-50% + ' + x.toFixed(2) + 'px), calc(-50% + ' + y.toFixed(2) + 'px))';
+    });
+
+    requestAnimationFrame(place);
+  }
+
+  place();
+})();
 </script>
 
 </body>
