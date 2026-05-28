@@ -141,43 +141,49 @@ nav.scrolled {
 
 .hero-logo {
   width: min(580px, 88vw);
-  margin-bottom: 8px;
+  margin-bottom: 180px;
   animation: fadeIn 1.4s ease .2s both;
+}
+
+.hero-tagline-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  margin: 0 auto;
+  max-width: 1080px;
+  animation: fadeUp .9s ease 1.2s both;
 }
 
 .hero-tagline {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(19px, 1.6vw, 23px);
+  font-size: clamp(26px, 2.2vw, 32px);
   color: var(--mid);
-  letter-spacing: 1.5px;
-  max-width: 480px;
-  margin: 0 auto 240px;
-  animation: fadeUp .9s ease 1.2s both;
-  line-height: 1.7;
+  letter-spacing: 2px;
+  max-width: 560px;
+  margin: 0;
+  line-height: 1.65;
 }
 
 .hero-scroll {
-  position: absolute;
-  bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 18px;
+  margin-top: 140px;
   animation: fadeIn 1s ease 2.2s both;
 }
 .hero-scroll span {
-  font-size: 14px;
-  letter-spacing: 6px;
+  font-size: 22px;
+  letter-spacing: 10px;
   text-transform: uppercase;
-  color: var(--light);
+  color: var(--mid);
   font-weight: 300;
 }
 .scroll-line {
   width: 0.5px;
-  height: 48px;
+  height: 72px;
   background: linear-gradient(180deg, var(--rule), transparent);
   animation: scrollPulse 2s ease-in-out 2.5s infinite;
 }
@@ -194,7 +200,7 @@ section {
 }
 
 .section-label {
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--light);
@@ -362,10 +368,10 @@ section {
 }
 .testimonial-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 17px;
+  font-size: 19px;
   font-style: italic;
   color: var(--mid);
-  line-height: 1.7;
+  line-height: 1.65;
   margin-bottom: 14px;
   font-weight: 300;
 }
@@ -383,7 +389,7 @@ section {
   .orbit-hub { position: static; transform: none; width: 160px; height: 160px; margin: 0 auto 32px; }
   .orbit-hub img { width: 160px; height: 160px; }
   .orbit-item { position: static; transform: none !important; width: 100%; max-width: 500px; margin-bottom: 32px; }
-  .testimonial-text { -webkit-line-clamp: unset; font-size: 17px; }
+  .testimonial-text { -webkit-line-clamp: unset; font-size: 18px; }
 }
 
 /* ── CAFÉ SATZ ── */
@@ -407,10 +413,10 @@ section {
   font-weight: 300;
 }
 .cafe-satz-text {
-  font-size: clamp(18px, 1.4vw, 21px);
+  font-size: clamp(21px, 1.5vw, 24px);
   color: var(--mid);
   font-style: italic;
-  line-height: 1.9;
+  line-height: 1.85;
   margin-bottom: 48px;
 }
 .cafe-satz-origin {
@@ -419,10 +425,10 @@ section {
   margin: 40px 0 48px;
 }
 .cafe-satz-origin p {
-  font-size: clamp(16px, 1.2vw, 18px);
+  font-size: clamp(19px, 1.35vw, 21px);
   color: var(--light);
   font-style: italic;
-  line-height: 1.9;
+  line-height: 1.85;
 }
 .cafe-satz-origin em {
   color: var(--red);
@@ -450,7 +456,7 @@ section {
   min-width: 60px;
 }
 .cafe-satz-detail-text {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--mid);
   font-style: italic;
   line-height: 1.7;
@@ -477,18 +483,18 @@ section {
 
 /* ── SERVICE EXPAND CONTENT (in card back) ── */
 .service-expand-text {
-  font-size: 18px;
+  font-size: 21px;
   color: #4a2e1e;
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.65;
   margin-bottom: 10px;
   text-align: left;
 }
 .service-expand-list {
-  font-size: 17px;
+  font-size: 21px;
   color: #4a2e1e;
   font-style: italic;
-  line-height: 1.7;
+  line-height: 1.65;
   padding-left: 0;
   list-style: none;
   margin-bottom: 10px;
@@ -501,13 +507,15 @@ section {
 }
 .service-expand-content {
   flex: 1;
+  min-width: 0;
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0 160px 0 36px;
+  padding: 28px 10px 0 12px;
+  margin-right: 110px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 12px;
 }
 .service-expand-content::-webkit-scrollbar {
@@ -595,9 +603,9 @@ section {
 .catchphrase-text {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  font-size: clamp(24px, 2.4vw, 36px);
+  font-size: clamp(32px, 3.2vw, 46px);
   color: var(--ink);
-  line-height: 1.6;
+  line-height: 1.5;
   font-weight: 300;
   flex-shrink: 0;
 }
@@ -642,17 +650,17 @@ section {
 }
 .about-pillar-title {
   font-family: 'Cormorant SC', serif;
-  font-size: 14px;
+  font-size: 17px;
   letter-spacing: 4px;
   color: var(--ink);
   font-weight: 300;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   display: block;
 }
 .about-pillar p {
-  font-size: clamp(17px, 1.3vw, 19px);
+  font-size: clamp(21px, 1.5vw, 24px);
   color: var(--mid);
-  line-height: 1.9;
+  line-height: 1.85;
   font-style: italic;
 }
 
@@ -805,9 +813,9 @@ section {
 }
 
 .service-desc {
-  font-size: 17px;
+  font-size: 19px;
   color: var(--mid);
-  line-height: 1.85;
+  line-height: 1.75;
   font-style: italic;
 }
 
@@ -935,7 +943,7 @@ section {
 
 .step-content {
   text-align: right;
-  padding: 0 40px;
+  padding: 0 16px;
   min-width: 0;
 }
 
@@ -951,10 +959,10 @@ section {
 }
 
 .step-content p {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--mid);
   font-style: italic;
-  line-height: 1.8;
+  line-height: 1.75;
   word-break: normal;
   overflow-wrap: break-word;
 }
@@ -1155,7 +1163,7 @@ section {
   text-align: center;
 }
 
-.contact-inner .section-label { color: #7a4a30; font-size: 14px; letter-spacing: 6px; }
+.contact-inner .section-label { color: #7a4a30; font-size: 16px; letter-spacing: 6px; }
 
 .contact-inner .section-title { color: #1c1208; }
 
@@ -1351,8 +1359,12 @@ footer {
   .nav-hamburger { display: flex; }
 
   .hero { padding: 100px 24px 80px; }
-  .hero-logo { width: min(340px, 90vw); }
+  .hero-logo { width: min(340px, 90vw); margin-bottom: 80px; }
   .hero-tagline { font-size: 17px; }
+  .hero-tagline-row { gap: 32px; flex-direction: column; }
+  .hero-bridge-wrap img { width: min(300px, 70vw); }
+  .hero-scroll { margin-top: 80px; }
+  .hero-scroll span { font-size: 18px; letter-spacing: 8px; }
 
   .about {
     grid-template-columns: 1fr;
@@ -1381,7 +1393,7 @@ footer {
   .service-card.flipped .service-card-back { display: flex; }
   .card-pictogram--back { position: static; top: auto; right: auto; width: 110px; height: 110px; align-self: center; margin: 12px auto 8px; }
   .service-name { font-size: 22px; }
-  .service-desc { font-size: 16px; }
+  .service-desc { font-size: 17px; }
   .service-expand-content {
     flex: none;
     overflow: visible;
@@ -1411,7 +1423,7 @@ footer {
   .process-step .step-num { order: 1; flex-shrink: 0; margin: 0; }
   .process-step .step-empty { display: none; }
   .step-content h3 { font-size: 20px; }
-  .step-content p { font-size: 16px; line-height: 1.7; }
+  .step-content p { font-size: 18px; line-height: 1.7; }
 
   .cal-section { padding: 60px 24px; }
   .cal-placeholder { padding: 40px 24px; }
@@ -1439,14 +1451,12 @@ footer {
 
 /* ── HERO BRIDGE IMAGE ── */
 .hero-bridge-wrap {
-  position: absolute;
-  left: 2%;
-  bottom: -60px;
+  flex-shrink: 0;
   z-index: 1;
   animation: fadeIn 1.2s ease 2s both;
 }
 .hero-bridge-wrap img {
-  width: min(300px, 30vw);
+  width: min(400px, 38vw);
   display: block;
   opacity: 0.92;
 }
@@ -1480,7 +1490,7 @@ footer {
 }
 .cafe-satz-layout {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr 320px;
   gap: 80px;
   align-items: start;
 }
@@ -1499,13 +1509,13 @@ footer {
 
 /* ── PROCESS SIDE PHOTOS ── */
 .process-section {
-  max-width: 1200px;
+  max-width: 1280px;
   padding: 120px 40px;
 }
 .process-outer {
   display: grid;
-  grid-template-columns: 280px 1fr 280px;
-  gap: 40px;
+  grid-template-columns: 210px 1fr 210px;
+  gap: 60px;
   align-items: start;
   margin-top: 64px;
 }
@@ -1518,7 +1528,7 @@ footer {
   justify-content: flex-end;
 }
 .process-col-right {
-  padding-top: 1020px;
+  padding-top: 1380px;
 }
 .process-side-photo {
   width: 100%;
@@ -1529,6 +1539,10 @@ footer {
     0 0 0 5.5px var(--red-soft),
     0 0 0 9px var(--cream),
     0 0 0 9.5px rgba(28, 18, 8, 0.45);
+}
+.process-col-right .process-side-photo {
+  width: 220px;
+  margin-left: -40px;
 }
 .process-mobile-photo {
   display: none;
@@ -1576,7 +1590,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .hero-bridge-wrap { display: none; }
   .photo-bridge-section { padding: 40px 24px; }
   .photo-bridge-section img { width: min(200px, 60vw); height: min(200px, 60vw); }
   .cafe-satz-inner { max-width: 100%; }
@@ -1622,13 +1635,14 @@ footer {
 <!-- ── HERO ── -->
 <section class="hero" id="hero">
   <img src="logos/Rote_Faden_logo.png" alt="Der rote Faden – die Wortweberei Carolina J. Kitsche" class="hero-logo">
-  <p class="hero-tagline">
-    Worte, die bleiben.<br>
-    Für Momente, die verbinden.
-  </p>
-  <!-- Bridge image: links, verbindet Logo und Entdecken -->
-  <div class="hero-bridge-wrap">
-    <img src="fotos/caro_writing_3_e.png" alt="Carolina schreibend" class="foto-rahmen" data-parallax="0.13">
+  <div class="hero-tagline-row">
+    <div class="hero-bridge-wrap">
+      <img src="fotos/caro_writing_3_e.png" alt="Carolina schreibend" class="foto-rahmen" data-parallax="0.04">
+    </div>
+    <p class="hero-tagline">
+      Worte, die bleiben.<br>
+      Für Momente, die verbinden.
+    </p>
   </div>
   <div class="hero-scroll">
     <span>Entdecken</span>
@@ -1646,7 +1660,7 @@ footer {
       <p>
         Diese Arbeit ist meine Entdeckung. Schreiben bereitet mir dann die größte Freude,
         wenn ich es teile — wenn Worte jemanden erreichen, der sie nicht erwartet hat.
-        Was mich antreibt, ist das Menschliche in seiner ganzen Breite: das Abgründige,
+        Was mich antreibt, ist das Menschliche in seiner ganzen Breite: das Tiefgründige,
         das Liebevolle, die Gleichzeitigkeit von allem.
       </p>
     </div>
@@ -1670,7 +1684,7 @@ footer {
   <!-- Catchphrase -->
   <div class="catchphrase-section reveal" style="justify-content: center;">
     <p class="catchphrase-text" style="text-align: center;">
-      Das Abgründige, das Liebevolle —<br>
+      Das Tiefgründige, das Liebevolle —<br>
       <em>und die Gleichzeitigkeit von allem.</em>
     </p>
   </div>
@@ -1691,7 +1705,7 @@ footer {
       <p>
         Seitdem folge ich dieser Inspiration – und fasse Menschen, Geschichten und Momente in Worte.
       </p>
-      <p style="font-size: clamp(17px, 1.3vw, 20px); color: var(--light); font-style: italic; line-height: 1.8; margin-top: 32px; border-top: 0.5px solid var(--border); padding-top: 24px;">
+      <p style="font-size: clamp(19px, 1.35vw, 21px); color: var(--light); font-style: italic; line-height: 1.8; margin-top: 32px; border-top: 0.5px solid var(--border); padding-top: 24px;">
         Der rote Faden – in der griechischen Mythologie Rettung aus dem Labyrinth,
         in der chinesischen und japanischen Tradition das unsichtbare Band zwischen zwei Menschen,
         bei Goethe das Unverwechselbare einer Geschichte.
@@ -1707,7 +1721,7 @@ footer {
   <!-- CTA nach Über mich -->
   <div class="reveal" style="text-align: center; padding: 0 60px 120px;">
     <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" style="display: inline-block; padding: 18px 56px; border: 0.5px solid var(--ink); color: var(--ink); text-decoration: none; font-family: 'Cormorant SC', serif; font-size: 14px; letter-spacing: 5px; font-weight: 300; transition: background .3s, color .3s;">Jetzt anfragen</a>
-    <p style="margin-top: 16px; font-size: 15px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
+    <p style="margin-top: 16px; font-size: 17px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
   </div>
 
 </div>
@@ -1914,7 +1928,7 @@ footer {
   <!-- CTA nach Angeboten -->
   <div class="reveal" style="text-align: center; padding: 60px 60px 80px;">
     <a href="#kontakt" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}); return false;" style="display: inline-block; padding: 18px 56px; border: 0.5px solid var(--ink); color: var(--ink); text-decoration: none; font-family: 'Cormorant SC', serif; font-size: 14px; letter-spacing: 5px; font-weight: 300; transition: background .3s, color .3s;">Jetzt anfragen</a>
-    <p style="margin-top: 16px; font-size: 15px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
+    <p style="margin-top: 16px; font-size: 17px; font-style: italic; color: var(--light); letter-spacing: 1px;">Das Erstgespräch ist kostenlos und unverbindlich.</p>
   </div>
 
 </div>
@@ -1981,7 +1995,7 @@ footer {
 
     <!-- Foto links – unabhängig von der Kette -->
     <div class="process-col-left reveal">
-      <img src="fotos/caro-speaking_2_oval.png" alt="Carolina im Gespräch" class="process-side-photo" data-parallax="0.07">
+      <img src="fotos/caro_serious_oval.png" alt="Carolina beim Vortragen" class="process-side-photo" data-parallax="0.07">
     </div>
 
     <div class="process-steps">
@@ -1998,14 +2012,14 @@ footer {
       <div class="process-step reveal">
         <div class="step-empty"></div>
         <div class="step-num">02</div>
-        <div class="step-content" style="text-align:left; padding: 0 40px;">
+        <div class="step-content" style="text-align:left; padding: 0 16px;">
           <h3>Das Gespräch</h3>
           <p>Wir sprechen über den Anlass, die Menschen dahinter und das, was du vermitteln möchtest.</p>
         </div>
       </div>
 
       <figure class="process-mobile-photo reveal">
-        <img src="fotos/caro-speaking_2_oval.png" alt="Carolina im Gespräch">
+        <img src="fotos/caro_serious_oval.png" alt="Carolina beim Vortragen">
       </figure>
 
       <div class="process-step reveal">
@@ -2020,7 +2034,7 @@ footer {
       <div class="process-step reveal">
         <div class="step-empty"></div>
         <div class="step-num">04</div>
-        <div class="step-content" style="text-align:left; padding: 0 40px;">
+        <div class="step-content" style="text-align:left; padding: 0 16px;">
           <h3>Feinschliff</h3>
           <p>Ich übergebe den ersten Entwurf – du gibst mir Rückmeldung, ich verfeinere den Text. Zwei Runden sind inklusive, weitere auf Anfrage.</p>
         </div>
@@ -2036,14 +2050,14 @@ footer {
       </div>
 
       <figure class="process-mobile-photo reveal">
-        <img src="fotos/caro_serious_oval.png" alt="Carolina beim Vortragen">
+        <img src="fotos/caro-speaking_smile_oval.png" alt="Carolina im Gespräch">
       </figure>
 
     </div>
 
     <!-- Foto rechts – unabhängig von der Kette -->
     <div class="process-col-right reveal">
-      <img src="fotos/caro_serious_oval.png" alt="Carolina beim Vortragen" class="process-side-photo" data-parallax="0.05">
+      <img src="fotos/caro-speaking_smile_oval.png" alt="Carolina im Gespräch" class="process-side-photo" data-parallax="0.05">
     </div>
 
   </div>
@@ -2062,7 +2076,7 @@ footer {
 
     <div class="cafe-satz-layout">
       <div>
-        <span class="section-label" style="color:var(--light); font-size:16px; letter-spacing:5px;">Ein besonderes Angebot</span>
+        <span class="section-label" style="color:var(--light);">Ein besonderes Angebot</span>
         <h2 class="section-title" style="color:var(--ink);">Café Satz</h2>
         <div class="thin-rule" style="margin: 0 0 40px;"></div>
 
@@ -2119,9 +2133,6 @@ footer {
 
 <!-- ── KONTAKT ── -->
 <div class="contact-section" id="kontakt">
-  <div class="contact-smiling reveal">
-    <img src="fotos/caro_serious_2.png" alt="Carolina" data-parallax="0.06">
-  </div>
   <div class="contact-inner">
     <span class="section-label reveal">Schreib mir</span>
     <h2 class="section-title reveal">Deine Anfrage</h2>
