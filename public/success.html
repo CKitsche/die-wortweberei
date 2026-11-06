@@ -72,21 +72,22 @@ iframe { width: 100%; height: 650px; border: none; background: transparent; }
 </head>
 <body>
   <div class="inner">
-    <h1>Danke</h1>
+    <h1 data-cms="danke.title">Danke</h1>
     <div class="rule"></div>
-    <p class="thank-msg">
+    <p class="thank-msg" data-cms="danke.text">
       Deine Nachricht ist angekommen.<br>
       Ich melde mich persönlich bei dir.
     </p>
     <div class="cal-divider"></div>
-    <span class="cal-label">Nächster Schritt</span>
-    <h2 class="cal-heading">Erstgespräch buchen</h2>
-    <p class="cal-hint">
+    <span class="cal-label" data-cms="danke.label">Nächster Schritt</span>
+    <h2 class="cal-heading" data-cms="danke.cal">Erstgespräch buchen</h2>
+    <p class="cal-hint" data-cms="danke.hint">
       Such dir gleich einen Termin für unser Erstgespräch aus —<br>
       30 Minuten, per Videocall, völlig unverbindlich und kostenlos.
     </p>
     <iframe src="https://cal.eu/wortweberei" title="Erstgespräch buchen"></iframe>
-    <a href="/" class="back-link">Zurück zum roten Faden</a>
+    <a href="/" class="back-link" data-cms="danke.back">Zurück zum roten Faden</a>
   </div>
+<script src="/cms.js" data-apply></script>
 </body>
 </html>
